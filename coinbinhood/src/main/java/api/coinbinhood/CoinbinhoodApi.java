@@ -1,10 +1,14 @@
 package api.coinbinhood;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.GsonBuilder;
+
 import api.coinbinhood.errorhandling.RxErrorHandlingCallAdapterFactory;
 import api.coinbinhood.interceptors.AuthenticationInterceptor;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static api.coinbinhood.utils.Util.isEmpty;
 
@@ -16,9 +20,6 @@ public class CoinbinhoodApi {
     public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com";
     public static final String COINBINHOOD_WEBSOCKET_ENDPOINT = "wss://feed.cobinhood.com/ws";
 
-    public CoinbinhoodApi() {
-
-    }
 
     public CoinbinhoodService getCoinbinhoodService() {
         return coinbinhoodService;
@@ -64,10 +65,16 @@ public class CoinbinhoodApi {
                 okHttpBuilder.addInterceptor(new AuthenticationInterceptor(accessToken));
             }
 
+
             OkHttpClient okHttpClient = okHttpBuilder.build();
+
+
+            final GsonBuilder builder = new GsonBuilder();
+            builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create(builder.create()))
                     .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                     .baseUrl(COINBINHOOD_WEB_API_ENDPOINT)
                     .build();

@@ -1,19 +1,30 @@
 package api.coinbinhood.errorhandling;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by joel on 3/17/18.
  */
 
 public class CoinbinhoodError {
-    private Integer mErrorCode;
 
-    private String mErrorMessage;
+    private boolean success;
+    List<Map<String, String>> error;
 
-    public int getErrorCode() {
-        return mErrorCode;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public String getErrorMessage() {
-        return mErrorMessage;
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public List<Map<String, String>> getError() {
+        return error;
+    }
+
+    public void setError(List<Map<String, String>> error) {
+        this.error = error;
     }
 }
