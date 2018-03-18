@@ -13,7 +13,9 @@ import okhttp3.Response;
 public class AuthenticationInterceptor implements Interceptor {
     private String token;
 
-
+    public AuthenticationInterceptor(String token) {
+        this.token = token;
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {

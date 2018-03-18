@@ -1,14 +1,16 @@
 package api.coinbinhood;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import api.coinbinhood.interceptors.AuthenticationInterceptor;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+
+import static api.coinbinhood.utils.Util.isEmpty;
+
 
 public class CoinbinhoodApi {
 
-    private boolean useCredentials;
-    private String accessToken;
     private  CoinbinhoodService coinbinhoodService;
-    private boolean debugMode;
 
     public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com";
     public static final String COINBINHOOD_WEBSOCKET_ENDPOINT = "wss://feed.cobinhood.com/ws";
@@ -17,33 +19,62 @@ public class CoinbinhoodApi {
 
     }
 
-    private void init()
+    public CoinbinhoodService getCoinbinhoodService() {
+        return coinbinhoodService;
+    }
+
+    /**
+     * This builder is utilized for setting up all the configuations that
+     * will be needed to create an instance of the Coinbinhood API
+     */
+    public static class Builder
     {
+        private String accessToken;
+        private Interceptor loggingInterceptor;
+
+        public Interceptor getLoggingInterceptor() {
+            return loggingInterceptor;
+        }
+
+        public Builder setLoggingInterceptor(Interceptor loggingInterceptor) {
+            this.loggingInterceptor = loggingInterceptor;
+
+            return this;
+        }
+
+        public String getAccessToken() {
+            return accessToken;
+        }
+
+        public Builder setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
+
+            return this;
+        }
+
+        public CoinbinhoodService build()
+        {
+
+            OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
+
+            if (loggingInterceptor!=null) {
+                okHttpBuilder.addInterceptor(loggingInterceptor);
+            }
+
+            if(!isEmpty(accessToken)){
+                okHttpBuilder.addInterceptor(new AuthenticationInterceptor(accessToken));
+            }
+
+            OkHttpClient okHttpClient = okHttpBuilder.build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl(COINBINHOOD_WEB_API_ENDPOINT)
+                    .build();
+
+            return retrofit.create(CoinbinhoodService.class);
+        }
 
     }
 
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    private boolean useCredentials() {
-        return useCredentials;
-    }
-
-    private void setUseCredentials(boolean useCredentials) {
-        this.useCredentials = useCredentials;
-    }
-
-    public boolean isDebugMode() {
-        return debugMode;
-    }
-
-    public void setDebugMode(boolean debugMode) {
-        this.debugMode = debugMode;
-    }
 }
