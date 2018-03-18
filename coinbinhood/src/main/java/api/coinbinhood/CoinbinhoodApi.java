@@ -1,5 +1,6 @@
 package api.coinbinhood;
 
+import api.coinbinhood.errorhandling.RxErrorHandlingCallAdapterFactory;
 import api.coinbinhood.interceptors.AuthenticationInterceptor;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -69,6 +70,7 @@ public class CoinbinhoodApi {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
+                    .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                     .baseUrl(COINBINHOOD_WEB_API_ENDPOINT)
                     .build();
 
