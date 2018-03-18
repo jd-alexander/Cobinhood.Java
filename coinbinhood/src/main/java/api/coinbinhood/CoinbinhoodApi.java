@@ -11,7 +11,7 @@ import static api.coinbinhood.utils.Util.isEmpty;
 
 public class CoinbinhoodApi {
 
-    private  CoinbinhoodService coinbinhoodService;
+    private CoinbinhoodService coinbinhoodService;
 
     public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com";
     public static final String COINBINHOOD_WEBSOCKET_ENDPOINT = "wss://feed.cobinhood.com/ws";
@@ -28,8 +28,7 @@ public class CoinbinhoodApi {
      * This builder is utilized for setting up all the configurations that
      * will be needed to create an instance of the Coinbinhood API
      */
-    public static class Builder
-    {
+    public static class Builder {
         private String accessToken;
         private Interceptor loggingInterceptor;
 
@@ -53,16 +52,15 @@ public class CoinbinhoodApi {
             return this;
         }
 
-        public CoinbinhoodService build()
-        {
+        public CoinbinhoodService build() {
 
             OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
-            if (loggingInterceptor!=null) {
+            if (loggingInterceptor != null) {
                 okHttpBuilder.addInterceptor(loggingInterceptor);
             }
 
-            if(!isEmpty(accessToken)){
+            if (!isEmpty(accessToken)) {
                 okHttpBuilder.addInterceptor(new AuthenticationInterceptor(accessToken));
             }
 

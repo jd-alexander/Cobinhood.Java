@@ -4,19 +4,16 @@ package api.coinbinhood.errorhandling;
  * Created by joel on 3/17/18.
  */
 
-public class CoinbinhoodError
-{
+public class CoinbinhoodError {
     private Integer mErrorCode;
 
     private String mErrorMessage;
 
-    public int getErrorCode()
-    {
+    public int getErrorCode() {
         return mErrorCode;
     }
 
-    public String getErrorMessage()
-    {
+    public String getErrorMessage() {
         return mErrorMessage;
     }
 }
