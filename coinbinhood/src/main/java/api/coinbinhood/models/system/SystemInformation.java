@@ -1,5 +1,7 @@
 package api.coinbinhood.models.system;
 
+import api.coinbinhood.models.BaseModel;
+
 /**
  * Created by joel on 3/18/18.
  */

@@ -1,4 +1,4 @@
-package api.coinbinhood.models.system;
+package api.coinbinhood.models;
 
 /**
  * Created by joel on 3/18/18.
