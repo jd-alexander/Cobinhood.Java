@@ -17,7 +17,6 @@ public class CoinbinhoodApi {
 
     public CoinbinhoodApi() {
 
-
     }
 
     public CoinbinhoodService getCoinbinhoodService() {

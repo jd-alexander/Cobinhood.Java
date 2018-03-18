@@ -2,6 +2,7 @@ package api.coinbinhood.injection.component
 
 import android.app.Application
 import api.coinbinhood.CoinbinhoodApp
+import api.coinbinhood.injection.builder.ActivityBuilder
 import api.coinbinhood.injection.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
@@ -12,7 +13,7 @@ import javax.inject.Singleton
  * Created by joel on 3/17/18.
  */
 @Singleton
-@Component(modules = [(AppModule::class),(AndroidInjectionModule::class)])
+@Component(modules = [(AndroidInjectionModule::class), (AppModule::class), (ActivityBuilder::class)])
 interface AppComponent {
 
     @Component.Builder
