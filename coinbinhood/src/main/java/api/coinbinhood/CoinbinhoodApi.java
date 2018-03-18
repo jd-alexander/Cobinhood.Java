@@ -17,6 +17,7 @@ public class CoinbinhoodApi {
 
     public CoinbinhoodApi() {
 
+
     }
 
     public CoinbinhoodService getCoinbinhoodService() {
@@ -24,7 +25,7 @@ public class CoinbinhoodApi {
     }
 
     /**
-     * This builder is utilized for setting up all the configuations that
+     * This builder is utilized for setting up all the configurations that
      * will be needed to create an instance of the Coinbinhood API
      */
     public static class Builder
@@ -74,7 +75,6 @@ public class CoinbinhoodApi {
 
             return retrofit.create(CoinbinhoodService.class);
         }
-
     }
 
 }
