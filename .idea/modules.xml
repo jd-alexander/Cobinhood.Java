@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Coinbinhood.iml" filepath="$PROJECT_DIR$/Coinbinhood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android.example/app.iml" filepath="$PROJECT_DIR$/android.example/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coinbinhood/api.iml" filepath="$PROJECT_DIR$/coinbinhood/api.iml" />
+    </modules>
+  </component>
+</project>
