@@ -9,16 +9,7 @@ import java.util.Map;
 
 public class CoinbinhoodError {
 
-    private boolean success;
     List<Map<String, String>> error;
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 
     public List<Map<String, String>> getError() {
         return error;
