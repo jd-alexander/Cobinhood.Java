@@ -32,11 +32,11 @@ ext {
     minSdkVersion = 16
     targetSdkVersion = 26
     compileSdkVersion = 26
-    buildToolsVersion = '26.0.2'
+    buildToolsVersion = '27.0.2'
 
     // App dependencies
     kotlinVersion = kotlinVersion
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '27.1.0'
     gsonVersion = '2.8.0'
     calligraphyVersion = '2.2.0'
     glideVersion = '3.7.0'
