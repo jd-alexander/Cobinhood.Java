@@ -2,6 +2,13 @@ package api.coinbinhood;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+
+import java.lang.reflect.Type;
+import java.util.Date;
 
 import api.coinbinhood.errorhandling.RxErrorHandlingCallAdapterFactory;
 import api.coinbinhood.interceptors.AuthenticationInterceptor;
@@ -71,6 +78,8 @@ public class CoinbinhoodApi {
 
             final GsonBuilder builder = new GsonBuilder();
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+
+            builder.registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (json, typeOfT, context) -> new Date(json.getAsJsonPrimitive().getAsLong()));
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
