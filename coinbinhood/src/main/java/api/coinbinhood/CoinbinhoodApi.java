@@ -24,7 +24,7 @@ public class CoinbinhoodApi {
 
     private CoinbinhoodService coinbinhoodService;
 
-    public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com";
+    public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com/v1/";
     public static final String COINBINHOOD_WEBSOCKET_ENDPOINT = "wss://feed.cobinhood.com/ws";
 
 
