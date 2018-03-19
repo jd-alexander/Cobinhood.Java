@@ -5,12 +5,14 @@ import org.junit.Test;
 
 import api.coinbinhood.CoinbinhoodApi;
 import api.coinbinhood.CoinbinhoodService;
+import api.coinbinhood.models.market.Currencies;
 import api.coinbinhood.models.system.SystemInformation;
 import api.coinbinhood.models.system.SystemTime;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by joel on 3/18/18.
@@ -55,6 +57,21 @@ public class ApiTests {
         SystemInformation value = observer.values().get(0);
 
         assertNotNull(value.getResult().getInfo());
+
+    }
+
+    @Test
+    public void CurrenciesTest()
+    {
+        TestObserver<Currencies> observer = coinbinhoodService.getAllCurrencies().test();
+
+        observer.assertNoErrors();
+
+        Currencies value = observer.values().get(0);
+
+        assertNotNull(value.getResult().getCurrencies());
+        assertTrue(value.getResult().getCurrencies().size()>1);
+
 
     }
 }
