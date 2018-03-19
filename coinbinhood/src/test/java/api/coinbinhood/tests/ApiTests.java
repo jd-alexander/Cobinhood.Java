@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import api.coinbinhood.CoinbinhoodApi;
 import api.coinbinhood.CoinbinhoodService;
+import api.coinbinhood.models.system.SystemInformation;
 import api.coinbinhood.models.system.SystemTime;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -33,17 +34,27 @@ public class ApiTests {
 
 
     @Test
-    public void SystemTime()
+    public void SystemTimeTest()
     {
-        TestObserver<SystemTime> observer;
-        observer = coinbinhoodService.getSystemTime().test();
+        TestObserver<SystemTime> observer = coinbinhoodService.getSystemTime().test();
 
         observer.assertNoErrors();
 
         SystemTime value = observer.values().get(0);
 
         assertNotNull(value.getResult().getTime());
+    }
 
+    @Test
+    public void SystemInformationTest()
+    {
+        TestObserver<SystemInformation> observer = coinbinhoodService.getSystemInformation().test();
+
+        observer.assertNoErrors();
+
+        SystemInformation value = observer.values().get(0);
+
+        assertNotNull(value.getResult().getInfo());
 
     }
 }
