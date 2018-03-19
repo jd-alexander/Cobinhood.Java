@@ -4,10 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
-import api.cobinhood.CobinhoodService;
+import api.cobinhood.api.CobinhoodMarketService;
 import api.cobinhood.models.market.Currencies;
-import api.cobinhood.models.system.SystemInformation;
-import api.cobinhood.models.system.SystemTime;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -15,12 +13,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by joel on 3/18/18.
+ * Created by joel on 3/19/18.
  */
 
-public class ApiTests {
+public class MarketTests {
 
-    private CobinhoodService cobinhoodService;
+    private CobinhoodMarketService cobinhoodService;
 
     @Before
     public void setup()
@@ -30,36 +28,9 @@ public class ApiTests {
 
         cobinhoodService = new CobinhoodApi.Builder()
                 .setLoggingInterceptor(logging)
-                .build();
+                .buildMarketService();
 
     }
-
-
-    @Test
-    public void SystemTimeTest()
-    {
-        TestObserver<SystemTime> observer = cobinhoodService.getSystemTime().test();
-
-        observer.assertNoErrors();
-
-        SystemTime value = observer.values().get(0);
-
-        assertNotNull(value.getResult().getTime());
-    }
-
-    @Test
-    public void SystemInformationTest()
-    {
-        TestObserver<SystemInformation> observer = cobinhoodService.getSystemInformation().test();
-
-        observer.assertNoErrors();
-
-        SystemInformation value = observer.values().get(0);
-
-        assertNotNull(value.getResult().getInfo());
-
-    }
-
     @Test
     public void CurrenciesTest()
     {

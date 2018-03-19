@@ -1,12 +1,14 @@
-package api.cobinhood;
+package api.cobinhood.api;
 
 import api.cobinhood.models.market.Currencies;
+import api.cobinhood.models.market.TradingPairs;
 import api.cobinhood.models.system.SystemInformation;
 import api.cobinhood.models.system.SystemTime;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 
 import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
+import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
 import static api.cobinhood.utils.Endpoints.GetSystemInformation;
 import static api.cobinhood.utils.Endpoints.GetSystemTime;
 
@@ -17,7 +19,7 @@ import static api.cobinhood.utils.Endpoints.GetSystemTime;
  * this api.
  */
 
-public interface CobinhoodService {
+public interface CobinhoodSystemService {
 
     @GET(GetSystemTime)
     Single<SystemTime> getSystemTime();
@@ -25,6 +27,4 @@ public interface CobinhoodService {
     @GET(GetSystemInformation)
     Single<SystemInformation> getSystemInformation();
 
-    @GET(GetAllCurrencies)
-    Single<Currencies> getAllCurrencies();
 }
