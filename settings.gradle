@@ -1,1 +1,1 @@
-include ':android.example', ':coinbinhood'
+include ':android.example', ':cobinhood'

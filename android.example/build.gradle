@@ -33,7 +33,7 @@ android {
 dependencies {
 
     //api library for coinbinhood
-    compile project(':coinbinhood')
+    compile project(':cobinhood')
 
     // android support libraries
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"

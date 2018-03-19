@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Coinbinhood.iml" filepath="$PROJECT_DIR$/Coinbinhood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cobinhood.iml" filepath="$PROJECT_DIR$/Cobinhood.iml" />
       <module fileurl="file://$PROJECT_DIR$/android.example/android.example.iml" filepath="$PROJECT_DIR$/android.example/android.example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coinbinhood/coinbinhood.iml" filepath="$PROJECT_DIR$/coinbinhood/coinbinhood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cobinhood/cobinhood.iml" filepath="$PROJECT_DIR$/cobinhood/cobinhood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cobinhood/coinbinhood.iml" filepath="$PROJECT_DIR$/cobinhood/coinbinhood.iml" />
     </modules>
   </component>
 </project>

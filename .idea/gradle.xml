@@ -9,7 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android.example" />
-            <option value="$PROJECT_DIR$/coinbinhood" />
+            <option value="$PROJECT_DIR$/cobinhood" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
