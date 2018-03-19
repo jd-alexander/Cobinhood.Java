@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
-import api.cobinhood.api.CobinhoodSystemService;
+import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.models.system.SystemInformation;
 import api.cobinhood.models.system.SystemTime;
 import io.reactivex.observers.TestObserver;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class SystemTests {
 
-    private CobinhoodSystemService cobinhoodService;
+    private CobinhoodService cobinhoodService;
 
     @Before
     public void setup()
@@ -28,7 +28,7 @@ public class SystemTests {
 
         cobinhoodService = new CobinhoodApi.Builder()
                 .setLoggingInterceptor(logging)
-                .buildGeneralService();
+                .build();
 
     }
 

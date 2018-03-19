@@ -6,8 +6,7 @@ import com.google.gson.JsonDeserializer;
 
 import java.util.Date;
 
-import api.cobinhood.api.CobinhoodMarketService;
-import api.cobinhood.api.CobinhoodSystemService;
+import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.errorhandling.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
 import okhttp3.Interceptor;
@@ -20,13 +19,13 @@ import static api.cobinhood.utils.Util.isEmpty;
 
 public class CobinhoodApi {
 
-    private CobinhoodSystemService cobinhoodService;
+    private CobinhoodService cobinhoodService;
 
     public static final String COINBINHOOD_WEB_API_ENDPOINT = "https://api.cobinhood.com/v1/";
     public static final String COINBINHOOD_WEBSOCKET_ENDPOINT = "wss://feed.cobinhood.com/ws";
 
 
-    public CobinhoodSystemService getCobinhoodService() {
+    public CobinhoodService getCobinhoodService() {
         return cobinhoodService;
     }
 
@@ -58,15 +57,9 @@ public class CobinhoodApi {
             return this;
         }
 
+        public CobinhoodService build() {
 
-        public CobinhoodMarketService buildMarketService()
-        {
-            return getRetrofit().create(CobinhoodMarketService.class);
-        }
-
-        public CobinhoodSystemService buildGeneralService() {
-
-            return getRetrofit().create(CobinhoodSystemService.class);
+            return getRetrofit().create(CobinhoodService.class);
 
         }
 

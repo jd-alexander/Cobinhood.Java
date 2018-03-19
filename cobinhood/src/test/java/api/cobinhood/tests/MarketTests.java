@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
-import api.cobinhood.api.CobinhoodMarketService;
+import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.models.market.Currencies;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 public class MarketTests {
 
-    private CobinhoodMarketService cobinhoodService;
+    private CobinhoodService cobinhoodService;
 
     @Before
     public void setup()
@@ -28,7 +28,7 @@ public class MarketTests {
 
         cobinhoodService = new CobinhoodApi.Builder()
                 .setLoggingInterceptor(logging)
-                .buildMarketService();
+                .build();
 
     }
     @Test
