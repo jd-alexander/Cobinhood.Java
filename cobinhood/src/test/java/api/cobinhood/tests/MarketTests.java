@@ -5,7 +5,8 @@ import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.models.market.Currencies;
+import api.cobinhood.models.CobinResponse;
+import api.cobinhood.models.market.CurrenciesResult;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -34,14 +35,14 @@ public class MarketTests {
     @Test
     public void CurrenciesTest()
     {
-        TestObserver<Currencies> observer = cobinhoodService.getAllCurrencies().test();
+        TestObserver<CobinResponse<CurrenciesResult>> observer = cobinhoodService.getAllCurrencies().test();
 
         observer.assertNoErrors();
 
-        Currencies value = observer.values().get(0);
+        CurrenciesResult value = observer.values().get(0).getResult();
 
-        assertNotNull(value.getResult().getCurrencies());
-        assertTrue(value.getResult().getCurrencies().size()>1);
+        assertNotNull(value.getCurrencies());
+        assertTrue(value.getCurrencies().size()>1);
 
     }
 }

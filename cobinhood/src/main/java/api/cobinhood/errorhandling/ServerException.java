@@ -78,7 +78,7 @@ public class ServerException extends RuntimeException {
     }
 
     /**
-     * Response object containing status code, headers, body, etc.
+     * CobinResponse object containing status code, headers, body, etc.
      */
     public Response getResponse() {
         return response;

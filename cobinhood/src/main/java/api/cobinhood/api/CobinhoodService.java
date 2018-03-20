@@ -1,48 +1,41 @@
 package api.cobinhood.api;
 
-import api.cobinhood.models.market.Currencies;
-import api.cobinhood.models.market.OrderBook;
-import api.cobinhood.models.market.TradingPairs;
-import api.cobinhood.models.market.TradingStatistics;
-import api.cobinhood.models.system.SystemInformation;
-import api.cobinhood.models.system.SystemTime;
+import api.cobinhood.models.CobinResponse;
+import api.cobinhood.models.market.CurrenciesResult;
+import api.cobinhood.models.market.OrderBookResult;
+import api.cobinhood.models.market.TradingPairsResult;
+import api.cobinhood.models.market.TradingStatisticsResult;
+import api.cobinhood.models.system.SystemInformationResult;
+import api.cobinhood.models.system.SystemTimeResult;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
-import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
-import static api.cobinhood.utils.Endpoints.GetOrderBook;
-import static api.cobinhood.utils.Endpoints.GetSystemInformation;
-import static api.cobinhood.utils.Endpoints.GetSystemTime;
-import static api.cobinhood.utils.Endpoints.GetTradingStatistics;
+import static api.cobinhood.utils.Endpoints.*;
 
 /**
- * Created by joel on 3/17/18.
- *
- * This interface contains all the methods that will be available within
- * this api.
+ * Created by joel on 3/19/18.
  */
 
 public interface CobinhoodService {
 
     @GET(GetSystemTime)
-    Single<SystemTime> getSystemTime();
+    Single<CobinResponse<SystemTimeResult>> getSystemTime();
 
     @GET(GetSystemInformation)
-    Single<SystemInformation> getSystemInformation();
+    Single<CobinResponse<SystemInformationResult>> getSystemInformation();
 
     @GET(GetAllCurrencies)
-    Single<Currencies> getAllCurrencies();
+    Single<CobinResponse<CurrenciesResult>> getAllCurrencies();
 
     @GET(GetAllTradingPairs)
-    Single<TradingPairs> getAllTradingPairs();
+    Single<CobinResponse<TradingPairsResult>> getAllTradingPairs();
 
     @GET(GetOrderBook)
-    Single<OrderBook> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+    Single<CobinResponse<OrderBookResult>> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetTradingStatistics)
-    Single<TradingStatistics> getTradingStatistics();
+    Single<CobinResponse<TradingStatisticsResult>> getTradingStatistics();
 
 }

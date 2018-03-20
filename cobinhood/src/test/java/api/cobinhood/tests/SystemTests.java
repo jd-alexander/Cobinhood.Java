@@ -5,8 +5,9 @@ import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.models.system.SystemInformation;
-import api.cobinhood.models.system.SystemTime;
+import api.cobinhood.models.CobinResponse;
+import api.cobinhood.models.system.SystemInformationResult;
+import api.cobinhood.models.system.SystemTimeResult;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -36,25 +37,25 @@ public class SystemTests {
     @Test
     public void SystemTimeTest()
     {
-        TestObserver<SystemTime> observer = cobinhoodService.getSystemTime().test();
+        TestObserver<CobinResponse<SystemTimeResult>> observer = cobinhoodService.getSystemTime().test();
 
         observer.assertNoErrors();
 
-        SystemTime value = observer.values().get(0);
+        SystemTimeResult value = observer.values().get(0).getResult();
 
-        assertNotNull(value.getResult().getTime());
+        assertNotNull(value.getTime());
     }
 
     @Test
     public void SystemInformationTest()
     {
-        TestObserver<SystemInformation> observer = cobinhoodService.getSystemInformation().test();
+        TestObserver<CobinResponse<SystemInformationResult>> observer = cobinhoodService.getSystemInformation().test();
 
         observer.assertNoErrors();
 
-        SystemInformation value = observer.values().get(0);
+        SystemInformationResult value = observer.values().get(0).getResult();
 
-        assertNotNull(value.getResult().getInfo());
+        assertNotNull(value.getInfo());
 
     }
 
