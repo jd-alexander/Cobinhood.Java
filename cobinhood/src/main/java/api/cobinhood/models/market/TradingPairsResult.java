@@ -7,13 +7,13 @@ import java.util.List;
  */
 
 public class TradingPairsResult {
-    private List<TradingPair> tradingPairs;
+    private List<TradingPairItem> tradingPairs;
 
-    public List<TradingPair> getTradingPairs() {
+    public List<TradingPairItem> getTradingPairs() {
         return tradingPairs;
     }
 
-    public void setTradingPairs(List<TradingPair> tradingPairs) {
+    public void setTradingPairs(List<TradingPairItem> tradingPairs) {
         this.tradingPairs = tradingPairs;
     }
 }

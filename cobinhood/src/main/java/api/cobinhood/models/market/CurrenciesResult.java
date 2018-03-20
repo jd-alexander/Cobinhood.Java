@@ -7,13 +7,13 @@ import java.util.List;
  */
 
 public class CurrenciesResult {
-    private List<Currency> currencies;
+    private List<CurrencyItem> currencies;
 
-    public List<Currency> getCurrencies() {
+    public List<CurrencyItem> getCurrencies() {
         return currencies;
     }
 
-    public void setCurrencies(List<Currency> currencies) {
+    public void setCurrencies(List<CurrencyItem> currencies) {
         this.currencies = currencies;
     }
 }

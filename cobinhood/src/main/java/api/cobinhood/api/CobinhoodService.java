@@ -3,6 +3,8 @@ package api.cobinhood.api;
 import api.cobinhood.models.CobinResponse;
 import api.cobinhood.models.market.CurrenciesResult;
 import api.cobinhood.models.market.OrderBookResult;
+import api.cobinhood.models.market.TickerResult;
+import api.cobinhood.models.market.TradesResult;
 import api.cobinhood.models.market.TradingPairsResult;
 import api.cobinhood.models.market.TradingStatisticsResult;
 import api.cobinhood.models.system.SystemInformationResult;
@@ -37,5 +39,12 @@ public interface CobinhoodService {
 
     @GET(GetTradingStatistics)
     Single<CobinResponse<TradingStatisticsResult>> getTradingStatistics();
+
+    @GET(GetTicker)
+    Single<CobinResponse<TickerResult>> getTicker(@Path("trading_pair_id") String tradingPairId);
+
+    @GET(GetRecentTrades)
+    Single<CobinResponse<TradesResult>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+
 
 }
