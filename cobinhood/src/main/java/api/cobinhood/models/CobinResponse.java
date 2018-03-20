@@ -5,7 +5,7 @@ package api.cobinhood.models;
  * Created by joel on 3/19/18.
  */
 
-public class CobinResponse<T> {
+public abstract class CobinResponse<T> {
     private T result;
     private boolean success;
 
