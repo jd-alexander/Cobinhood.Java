@@ -1,6 +1,7 @@
 package api.cobinhood.api;
 
 import api.cobinhood.models.CobinResponse;
+import api.cobinhood.models.chart.CandleResult;
 import api.cobinhood.models.market.CurrenciesResult;
 import api.cobinhood.models.market.OrderBookResult;
 import api.cobinhood.models.market.TickerResult;
@@ -46,5 +47,7 @@ public interface CobinhoodService {
     @GET(GetRecentTrades)
     Single<CobinResponse<TradesResult>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
+    @GET(GetCandles)
+    Single<CobinResponse<CandleResult>> getCandles(@Path("trading_pair_id") String tradingPairId);
 
 }
