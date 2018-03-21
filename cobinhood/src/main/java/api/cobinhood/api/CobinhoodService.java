@@ -2,6 +2,7 @@ package api.cobinhood.api;
 
 import api.cobinhood.models.CobinResponse;
 import api.cobinhood.models.chart.CandleResult;
+import api.cobinhood.models.chart.Timeframe;
 import api.cobinhood.models.market.CurrenciesResult;
 import api.cobinhood.models.market.OrderBookResult;
 import api.cobinhood.models.market.TickerResult;
@@ -10,6 +11,7 @@ import api.cobinhood.models.market.TradingPairsResult;
 import api.cobinhood.models.market.TradingStatisticsResult;
 import api.cobinhood.models.system.SystemInformationResult;
 import api.cobinhood.models.system.SystemTimeResult;
+import api.cobinhood.models.trading.OrderResult;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -48,6 +50,12 @@ public interface CobinhoodService {
     Single<CobinResponse<TradesResult>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetCandles)
-    Single<CobinResponse<CandleResult>> getCandles(@Path("trading_pair_id") String tradingPairId);
+    Single<CobinResponse<CandleResult>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe,@Path("start_time") long startTime, @Path("end_time")long endTime);
+
+    //Trading API calls
+
+    @GET(GetOrder)
+    Single<CobinResponse<OrderResult>> getOrder(@Path("order_id") String orderId);
+
 
 }

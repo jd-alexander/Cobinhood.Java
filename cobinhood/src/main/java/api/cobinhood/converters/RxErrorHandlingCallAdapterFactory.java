@@ -1,10 +1,11 @@
-package api.cobinhood.errorhandling;
+package api.cobinhood.converters;
 
 import java.io.IOException;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import api.cobinhood.errorhandling.ServerException;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

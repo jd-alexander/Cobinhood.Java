@@ -7,7 +7,8 @@ import com.google.gson.JsonDeserializer;
 import java.util.Date;
 
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.errorhandling.RxErrorHandlingCallAdapterFactory;
+import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
+import api.cobinhood.converters.RetrofitEnumConverter;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -87,6 +88,7 @@ public class CobinhoodApi {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
+                    .addConverterFactory(new RetrofitEnumConverter())
                     .addConverterFactory(GsonConverterFactory.create(builder.create()))
                     .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                     .baseUrl(COINBINHOOD_WEB_API_ENDPOINT)
