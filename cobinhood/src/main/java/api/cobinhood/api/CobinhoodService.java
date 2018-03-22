@@ -6,14 +6,22 @@ import api.cobinhood.models.chart.Timeframe;
 import api.cobinhood.models.market.CurrenciesResult;
 import api.cobinhood.models.market.OrderBookResult;
 import api.cobinhood.models.market.TickerResult;
+import api.cobinhood.models.market.TradeResult;
 import api.cobinhood.models.market.TradesResult;
 import api.cobinhood.models.market.TradingPairsResult;
 import api.cobinhood.models.market.TradingStatisticsResult;
 import api.cobinhood.models.system.SystemInformationResult;
 import api.cobinhood.models.system.SystemTimeResult;
+import api.cobinhood.models.trading.OrderHistoryResult;
+import api.cobinhood.models.trading.OrderItem;
 import api.cobinhood.models.trading.OrderResult;
+import api.cobinhood.models.trading.OrdersResult;
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -24,6 +32,8 @@ import static api.cobinhood.utils.Endpoints.*;
  */
 
 public interface CobinhoodService {
+
+    //Market API calls
 
     @GET(GetSystemTime)
     Single<CobinResponse<SystemTimeResult>> getSystemTime();
@@ -55,7 +65,25 @@ public interface CobinhoodService {
     //Trading API calls
 
     @GET(GetOrder)
-    Single<CobinResponse<OrderResult>> getOrder(@Path("order_id") String orderId);
+    Single<CobinResponse<OrderItem>> getOrder(@Path("order_id") String orderId);
+
+    @GET(GetOrderTrades)
+    Single<CobinResponse<TradesResult>> getOrderTrades(@Path("order_id") String orderId);
+
+    @GET(GetAllOrders)
+    Single<CobinResponse<OrdersResult>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
+
+    @POST(PlaceOrder)
+    Single<CobinResponse<OrderResult>> placeOrder(@Body OrderItem order);
+
+    @DELETE(CancelOrder)
+    Completable cancelOrder(@Path("order_id") String orderId);
+
+    @GET(GetOrderHistory)
+    Single<CobinResponse<OrderHistoryResult>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+
+    @GET(GetTrade)
+    Single<CobinResponse<TradeResult>> getTrade(@Path("trade_id") String tradeId);
 
 
 }
