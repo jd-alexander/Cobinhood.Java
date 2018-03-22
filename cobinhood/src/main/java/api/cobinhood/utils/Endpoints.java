@@ -20,6 +20,7 @@ public class Endpoints {
     public static final String GetCandles = "chart/candles/{trading_pair_id}";
 
     public static final String GetOrder = "trading/orders/{order_id}";
+    public static final String ModifyOrder = "trading/orders/{order_id}";
     public static final String GetOrderTrades = "trading/orders/{order_id}/trades";
     public static final String GetAllOrders = "trading/orders";
     public static final String PlaceOrder = "trading/orders";

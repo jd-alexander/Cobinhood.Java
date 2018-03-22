@@ -22,6 +22,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -77,13 +78,17 @@ public interface CobinhoodService {
     Single<CobinResponse<OrderResult>> placeOrder(@Body OrderItem order);
 
     @DELETE(CancelOrder)
-    Completable cancelOrder(@Path("order_id") String orderId);
+    Single<CobinResponse> cancelOrder(@Path("order_id") String orderId);
 
     @GET(GetOrderHistory)
     Single<CobinResponse<OrderHistoryResult>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetTrade)
     Single<CobinResponse<TradeResult>> getTrade(@Path("trade_id") String tradeId);
+
+    @PUT(ModifyOrder)
+    Single<CobinResponse> modifyOrder(@Body OrderItem order, @Path("order_id") String orderId);
+
 
 
 }
