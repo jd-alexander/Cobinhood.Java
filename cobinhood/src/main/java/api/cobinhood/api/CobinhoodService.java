@@ -16,7 +16,6 @@ import api.cobinhood.models.trading.OrderHistoryResult;
 import api.cobinhood.models.trading.OrderItem;
 import api.cobinhood.models.trading.OrderResult;
 import api.cobinhood.models.trading.OrdersResult;
-import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -26,7 +25,24 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-import static api.cobinhood.utils.Endpoints.*;
+import static api.cobinhood.utils.Endpoints.CancelOrder;
+import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
+import static api.cobinhood.utils.Endpoints.GetAllOrders;
+import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
+import static api.cobinhood.utils.Endpoints.GetCandles;
+import static api.cobinhood.utils.Endpoints.GetOrder;
+import static api.cobinhood.utils.Endpoints.GetOrderBook;
+import static api.cobinhood.utils.Endpoints.GetOrderHistory;
+import static api.cobinhood.utils.Endpoints.GetOrderTrades;
+import static api.cobinhood.utils.Endpoints.GetRecentTrades;
+import static api.cobinhood.utils.Endpoints.GetSystemInformation;
+import static api.cobinhood.utils.Endpoints.GetSystemTime;
+import static api.cobinhood.utils.Endpoints.GetTicker;
+import static api.cobinhood.utils.Endpoints.GetTrade;
+import static api.cobinhood.utils.Endpoints.GetTradeHistory;
+import static api.cobinhood.utils.Endpoints.GetTradingStatistics;
+import static api.cobinhood.utils.Endpoints.ModifyOrder;
+import static api.cobinhood.utils.Endpoints.PlaceOrder;
 
 /**
  * Created by joel on 3/19/18.
@@ -88,6 +104,13 @@ public interface CobinhoodService {
 
     @PUT(ModifyOrder)
     Single<CobinResponse> modifyOrder(@Body OrderItem order, @Path("order_id") String orderId);
+
+    @GET(GetTradeHistory)
+    Single<CobinResponse<TradesResult>> getTradeHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+
+    //wallet API calls
+
+
 
 
 
