@@ -16,6 +16,7 @@ import api.cobinhood.models.trading.OrderHistoryResult;
 import api.cobinhood.models.trading.OrderItem;
 import api.cobinhood.models.trading.OrderResult;
 import api.cobinhood.models.trading.OrdersResult;
+import api.cobinhood.models.wallet.AddressesResult;
 import api.cobinhood.models.wallet.BalancesResult;
 import api.cobinhood.models.wallet.LedgerResult;
 import io.reactivex.Single;
@@ -32,6 +33,7 @@ import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
 import static api.cobinhood.utils.Endpoints.GetAllOrders;
 import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
 import static api.cobinhood.utils.Endpoints.GetCandles;
+import static api.cobinhood.utils.Endpoints.GetDepositAddresses;
 import static api.cobinhood.utils.Endpoints.GetLedgerEntries;
 import static api.cobinhood.utils.Endpoints.GetOrder;
 import static api.cobinhood.utils.Endpoints.GetOrderBook;
@@ -119,5 +121,9 @@ public interface CobinhoodService {
 
     @GET(GetLedgerEntries)
     Single<CobinResponse<LedgerResult>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
+
+    @GET(GetDepositAddresses)
+    Single<CobinResponse<AddressesResult>> getDepositAddresses();
+
 
 }

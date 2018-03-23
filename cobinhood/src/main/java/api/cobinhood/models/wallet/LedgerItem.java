@@ -12,6 +12,10 @@ public class LedgerItem {
     private String amount;
     private String balance;
     private String tradeId;
+    private String depositId;
+    private String withdrawalId;
+    private String fiatDepositId;
+    private String fiatWithdrawalId;
 
     public String getTimestamp() {
         return timestamp;
@@ -67,5 +71,37 @@ public class LedgerItem {
 
     public void setTradeId(String tradeId) {
         this.tradeId = tradeId;
+    }
+
+    public String getDepositId() {
+        return depositId;
+    }
+
+    public void setDepositId(String depositId) {
+        this.depositId = depositId;
+    }
+
+    public String getWithdrawalId() {
+        return withdrawalId;
+    }
+
+    public void setWithdrawalId(String withdrawalId) {
+        this.withdrawalId = withdrawalId;
+    }
+
+    public String getFiatDepositId() {
+        return fiatDepositId;
+    }
+
+    public void setFiatDepositId(String fiatDepositId) {
+        this.fiatDepositId = fiatDepositId;
+    }
+
+    public String getFiatWithdrawalId() {
+        return fiatWithdrawalId;
+    }
+
+    public void setFiatWithdrawalId(String fiatWithdrawalId) {
+        this.fiatWithdrawalId = fiatWithdrawalId;
     }
 }
