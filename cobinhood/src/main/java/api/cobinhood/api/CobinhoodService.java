@@ -16,9 +16,10 @@ import api.cobinhood.models.trading.OrderHistoryResult;
 import api.cobinhood.models.trading.OrderItem;
 import api.cobinhood.models.trading.OrderResult;
 import api.cobinhood.models.trading.OrdersResult;
-import api.cobinhood.models.wallet.AddressesResult;
+import api.cobinhood.models.wallet.DepositAddressesResult;
 import api.cobinhood.models.wallet.BalancesResult;
 import api.cobinhood.models.wallet.LedgerResult;
+import api.cobinhood.models.wallet.WithdrawalAddressesResult;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -47,6 +48,7 @@ import static api.cobinhood.utils.Endpoints.GetTrade;
 import static api.cobinhood.utils.Endpoints.GetTradeHistory;
 import static api.cobinhood.utils.Endpoints.GetTradingStatistics;
 import static api.cobinhood.utils.Endpoints.GetWalletBalances;
+import static api.cobinhood.utils.Endpoints.GetWithdrawalAddresses;
 import static api.cobinhood.utils.Endpoints.ModifyOrder;
 import static api.cobinhood.utils.Endpoints.PlaceOrder;
 
@@ -123,7 +125,11 @@ public interface CobinhoodService {
     Single<CobinResponse<LedgerResult>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetDepositAddresses)
-    Single<CobinResponse<AddressesResult>> getDepositAddresses();
+    Single<CobinResponse<DepositAddressesResult>> getDepositAddresses(@Query("currency") String currency);
+
+    @GET(GetWithdrawalAddresses)
+    Single<CobinResponse<WithdrawalAddressesResult>> getWithdrawalAddresses(@Query("currency") String currency);
+
 
 
 }
