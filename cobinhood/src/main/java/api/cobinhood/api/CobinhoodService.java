@@ -16,6 +16,8 @@ import api.cobinhood.models.trading.OrderHistoryResult;
 import api.cobinhood.models.trading.OrderItem;
 import api.cobinhood.models.trading.OrderResult;
 import api.cobinhood.models.trading.OrdersResult;
+import api.cobinhood.models.wallet.BalancesResult;
+import api.cobinhood.models.wallet.LedgerResult;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,6 +32,7 @@ import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
 import static api.cobinhood.utils.Endpoints.GetAllOrders;
 import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
 import static api.cobinhood.utils.Endpoints.GetCandles;
+import static api.cobinhood.utils.Endpoints.GetLedgerEntries;
 import static api.cobinhood.utils.Endpoints.GetOrder;
 import static api.cobinhood.utils.Endpoints.GetOrderBook;
 import static api.cobinhood.utils.Endpoints.GetOrderHistory;
@@ -41,6 +44,7 @@ import static api.cobinhood.utils.Endpoints.GetTicker;
 import static api.cobinhood.utils.Endpoints.GetTrade;
 import static api.cobinhood.utils.Endpoints.GetTradeHistory;
 import static api.cobinhood.utils.Endpoints.GetTradingStatistics;
+import static api.cobinhood.utils.Endpoints.GetWalletBalances;
 import static api.cobinhood.utils.Endpoints.ModifyOrder;
 import static api.cobinhood.utils.Endpoints.PlaceOrder;
 
@@ -110,8 +114,10 @@ public interface CobinhoodService {
 
     //wallet API calls
 
+    @GET(GetWalletBalances)
+    Single<CobinResponse<BalancesResult>> getWalletBalances();
 
-
-
+    @GET(GetLedgerEntries)
+    Single<CobinResponse<LedgerResult>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
 
 }
