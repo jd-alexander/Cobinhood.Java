@@ -10,6 +10,8 @@ import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.converters.RetrofitEnumConverter;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
+import api.cobinhood.serializers.DateDeserializer;
+import api.cobinhood.serializers.DateSerializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -64,8 +66,7 @@ public class CobinhoodApi {
 
         }
 
-        private Retrofit getRetrofit()
-            {
+        private Retrofit getRetrofit() {
 
             OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
@@ -84,7 +85,8 @@ public class CobinhoodApi {
             final GsonBuilder builder = new GsonBuilder();
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-            builder.registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (json, typeOfT, context) -> new Date(json.getAsJsonPrimitive().getAsLong()));
+            builder.registerTypeAdapter(Date.class, new DateDeserializer());
+            builder.registerTypeAdapter(Date.class, new DateSerializer());
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)

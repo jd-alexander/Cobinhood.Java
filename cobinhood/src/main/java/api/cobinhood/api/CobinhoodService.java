@@ -150,7 +150,4 @@ public interface CobinhoodService {
     @GET(GetAllDeposits)
     Single<CobinResponse<DepositsResult>> getDeposits();
 
-
-
-
 }
