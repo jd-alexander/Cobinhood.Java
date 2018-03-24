@@ -1,5 +1,7 @@
 package api.cobinhood.models.chart;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/21/18.
  */
@@ -8,7 +10,7 @@ public class CandleItem {
 
     private String timeframe;
     private String tradingPairId;
-    private long timestamp;
+    private Date timestamp;
     private String volume;
     private String open;
     private String close;
@@ -29,14 +31,6 @@ public class CandleItem {
 
     public void setTradingPairId(String tradingPairId) {
         this.tradingPairId = tradingPairId;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getVolume() {
@@ -77,5 +71,13 @@ public class CandleItem {
 
     public void setLow(String low) {
         this.low = low;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }

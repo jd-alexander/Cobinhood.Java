@@ -1,5 +1,7 @@
 package api.cobinhood.models.trading;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/21/18.
  */
@@ -14,9 +16,9 @@ public class OrderItem {
     private String size;
     private String filled;
     private String state;
-    private long timestamp;
+    private Date timestamp;
     private String eqPrice;
-    private String completedAt;
+    private Date completedAt;
 
     public String getId() {
         return id;
@@ -82,14 +84,6 @@ public class OrderItem {
         this.state = state;
     }
 
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getEqPrice() {
         return eqPrice;
     }
@@ -98,11 +92,19 @@ public class OrderItem {
         this.eqPrice = eqPrice;
     }
 
-    public String getCompletedAt() {
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Date getCompletedAt() {
         return completedAt;
     }
 
-    public void setCompletedAt(String completedAt) {
+    public void setCompletedAt(Date completedAt) {
         this.completedAt = completedAt;
     }
 }

@@ -1,5 +1,7 @@
 package api.cobinhood.models.market;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/19/18.
  */
@@ -10,7 +12,7 @@ public class TradeItem {
     private String price;
     private String size;
     private String makerSide;
-    private long timestamp;
+    private Date timestamp;
 
     public String getId() {
         return id;
@@ -44,11 +46,4 @@ public class TradeItem {
         this.makerSide = makerSide;
     }
 
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
 }

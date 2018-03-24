@@ -9,8 +9,8 @@ import java.util.List;
 public class OrderBookItem {
 
     private int sequence;
-    private List<Offer> bids;
-    private List<Offer> asks;
+    private List<OfferItem> bids;
+    private List<OfferItem> asks;
 
     public int getSequence() {
         return sequence;
@@ -20,19 +20,19 @@ public class OrderBookItem {
         this.sequence = sequence;
     }
 
-    public List<Offer> getBids() {
+    public List<OfferItem> getBids() {
         return bids;
     }
 
-    public void setBids(List<Offer> bids) {
+    public void setBids(List<OfferItem> bids) {
         this.bids = bids;
     }
 
-    public List<Offer> getAsks() {
+    public List<OfferItem> getAsks() {
         return asks;
     }
 
-    public void setAsks(List<Offer> asks) {
+    public void setAsks(List<OfferItem> asks) {
         this.asks = asks;
     }
 }

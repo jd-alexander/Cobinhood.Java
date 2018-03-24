@@ -5,13 +5,13 @@ package api.cobinhood.models.system;
  */
 
 public class SystemInformationResult {
-    private Info info;
+    private InfoItem info;
 
-    public Info getInfo() {
+    public InfoItem getInfo() {
         return info;
     }
 
-    public void setInfo(Info info) {
+    public void setInfo(InfoItem info) {
         this.info = info;
     }
 }

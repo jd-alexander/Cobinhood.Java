@@ -18,6 +18,8 @@ import api.cobinhood.models.trading.OrderResult;
 import api.cobinhood.models.trading.OrdersResult;
 import api.cobinhood.models.wallet.DepositAddressesResult;
 import api.cobinhood.models.wallet.BalancesResult;
+import api.cobinhood.models.wallet.DepositResult;
+import api.cobinhood.models.wallet.DepositsResult;
 import api.cobinhood.models.wallet.LedgerResult;
 import api.cobinhood.models.wallet.WithdrawalAddressesResult;
 import api.cobinhood.models.wallet.WithdrawalResult;
@@ -33,10 +35,12 @@ import retrofit2.http.Query;
 
 import static api.cobinhood.utils.Endpoints.CancelOrder;
 import static api.cobinhood.utils.Endpoints.GetAllCurrencies;
+import static api.cobinhood.utils.Endpoints.GetAllDeposits;
 import static api.cobinhood.utils.Endpoints.GetAllOrders;
 import static api.cobinhood.utils.Endpoints.GetAllTradingPairs;
 import static api.cobinhood.utils.Endpoints.GetAllWithdrawals;
 import static api.cobinhood.utils.Endpoints.GetCandles;
+import static api.cobinhood.utils.Endpoints.GetDeposit;
 import static api.cobinhood.utils.Endpoints.GetDepositAddresses;
 import static api.cobinhood.utils.Endpoints.GetLedgerEntries;
 import static api.cobinhood.utils.Endpoints.GetOrder;
@@ -140,6 +144,11 @@ public interface CobinhoodService {
     @GET(GetAllWithdrawals)
     Single<CobinResponse<WithdrawalsResult>> getWithdrawals(@Query("page") Integer page, @Query("limit") Integer limit);
 
+    @GET(GetDeposit)
+    Single<CobinResponse<DepositResult>> getDeposit(@Path("deposit_id") String depositId);
+
+    @GET(GetAllDeposits)
+    Single<CobinResponse<DepositsResult>> getDeposits();
 
 
 

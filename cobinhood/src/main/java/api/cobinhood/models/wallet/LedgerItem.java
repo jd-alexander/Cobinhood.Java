@@ -1,11 +1,13 @@
 package api.cobinhood.models.wallet;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/23/18.
  */
 
 public class LedgerItem {
-    private String timestamp;
+    private Date timestamp;
     private String currency;
     private String type;
     private String action;
@@ -17,11 +19,11 @@ public class LedgerItem {
     private String fiatDepositId;
     private String fiatWithdrawalId;
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -2,13 +2,15 @@ package api.cobinhood.models.market;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/19/18.
  */
 
 public class TickerItem {
     private String tradingPairId;
-    private long timestamp;
+    private Date timestamp;
     @SerializedName("24h_high")
     private String _24hHigh;
     @SerializedName("24h_low")
@@ -27,14 +29,6 @@ public class TickerItem {
 
     public void setTradingPairId(String tradingPairId) {
         this.tradingPairId = tradingPairId;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String get_24hHigh() {
@@ -91,5 +85,13 @@ public class TickerItem {
 
     public void setLowestAsk(String lowestAsk) {
         this.lowestAsk = lowestAsk;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }

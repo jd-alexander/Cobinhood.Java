@@ -4,7 +4,7 @@ package api.cobinhood.models.market;
  * Created by joel on 3/19/18.
  */
 
-public class Offer {
+public class OfferItem {
     private String price;
     private String count;
     private String size;
