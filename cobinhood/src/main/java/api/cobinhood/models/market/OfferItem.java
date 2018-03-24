@@ -9,6 +9,12 @@ public class OfferItem {
     private String count;
     private String size;
 
+    public OfferItem(String price, String count, String size) {
+        this.price = price;
+        this.count = count;
+        this.size = size;
+    }
+
     public String getPrice() {
         return price;
     }
