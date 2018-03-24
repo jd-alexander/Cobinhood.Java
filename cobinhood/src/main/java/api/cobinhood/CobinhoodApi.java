@@ -3,16 +3,20 @@ package api.cobinhood;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.Date;
+import java.util.List;
 
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.converters.DateConverter;
 import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.converters.RetrofitEnumConverter;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
+import api.cobinhood.models.market.OfferItem;
 import api.cobinhood.serializers.DateDeserializer;
 import api.cobinhood.serializers.DateSerializer;
+import api.cobinhood.serializers.OfferDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -86,6 +90,7 @@ public class CobinhoodApi {
             final GsonBuilder builder = new GsonBuilder();
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
+            builder.registerTypeAdapter(new TypeToken<List<OfferItem>>(){}.getType(),new OfferDeserializer());
             builder.registerTypeAdapter(Date.class, new DateDeserializer());
             builder.registerTypeAdapter(Date.class, new DateSerializer());
 
