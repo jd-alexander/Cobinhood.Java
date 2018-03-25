@@ -2,6 +2,7 @@ package api.cobinhood.interceptors;
 
 import java.io.IOException;
 
+import api.cobinhood.utils.NonceManager;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -23,6 +24,16 @@ public class AuthenticationInterceptor implements Interceptor {
         Request request = chain.request();
         Request authenticatedRequest = request.newBuilder()
                 .header("authorization", token).build();
+
+        if(request.method() != "GET")
+        {
+            Request nonceRequest = authenticatedRequest.newBuilder()
+                    .header("nonce", String.valueOf(NonceManager.getInstance().getNonce())).build();
+
+            return chain.proceed(nonceRequest);
+
+        }
+
 
         return chain.proceed(authenticatedRequest);
     }
