@@ -4,7 +4,7 @@ package api.cobinhood.api.models.system;
  * Created by joel on 3/18/18.
  */
 
-public class InfoItem {
+public class SystemInformation {
     private String phase;
     private String revision;
 

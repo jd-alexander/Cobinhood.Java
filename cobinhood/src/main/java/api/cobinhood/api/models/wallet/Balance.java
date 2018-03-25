@@ -4,7 +4,7 @@ package api.cobinhood.api.models.wallet;
  * Created by joel on 3/23/18.
  */
 
-public class BalanceItem {
+public class Balance {
 
     private String currency;
     private String type;

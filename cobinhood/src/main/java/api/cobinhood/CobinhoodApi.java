@@ -12,7 +12,7 @@ import api.cobinhood.converters.DateConverter;
 import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.converters.RetrofitEnumConverter;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
-import api.cobinhood.api.models.market.OfferItem;
+import api.cobinhood.api.models.market.Offer;
 import api.cobinhood.serializers.DateDeserializer;
 import api.cobinhood.serializers.DateSerializer;
 import api.cobinhood.serializers.OfferDeserializer;
@@ -89,7 +89,7 @@ public class CobinhoodApi {
             final GsonBuilder builder = new GsonBuilder();
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-            builder.registerTypeAdapter(new TypeToken<List<OfferItem>>(){}.getType(),new OfferDeserializer());
+            builder.registerTypeAdapter(new TypeToken<List<Offer>>(){}.getType(),new OfferDeserializer());
             builder.registerTypeAdapter(Date.class, new DateDeserializer());
             builder.registerTypeAdapter(Date.class, new DateSerializer());
 

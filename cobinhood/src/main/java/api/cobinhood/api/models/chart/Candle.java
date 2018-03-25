@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by joel on 3/21/18.
  */
 
-public class CandleItem {
+public class Candle {
 
     private String timeframe;
     private String tradingPairId;

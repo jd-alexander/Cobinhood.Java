@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by joel on 3/18/18.
  */
 
-public class CurrencyItem {
+public class Currency {
 
     @SerializedName("currency")
     private String ticker;

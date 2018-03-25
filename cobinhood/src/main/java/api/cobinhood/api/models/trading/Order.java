@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by joel on 3/21/18.
  */
 
-public class OrderItem {
+public class Order {
 
     private String id;
     private String tradingPair;

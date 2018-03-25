@@ -1,18 +1,25 @@
 package api.cobinhood.api.models.market;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/19/18.
  */
 
-public class OfferItem {
-    private String price;
-    private String count;
-    private String size;
+public class Trade {
 
-    public OfferItem(String price, String count, String size) {
-        this.price = price;
-        this.count = count;
-        this.size = size;
+    private String id;
+    private String price;
+    private String size;
+    private String makerSide;
+    private Date timestamp;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPrice() {
@@ -23,14 +30,6 @@ public class OfferItem {
         this.price = price;
     }
 
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
-        this.count = count;
-    }
-
     public String getSize() {
         return size;
     }
@@ -38,4 +37,13 @@ public class OfferItem {
     public void setSize(String size) {
         this.size = size;
     }
+
+    public String getMakerSide() {
+        return makerSide;
+    }
+
+    public void setMakerSide(String makerSide) {
+        this.makerSide = makerSide;
+    }
+
 }

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by joel on 3/24/18.
  */
 
-public class DepositItem {
+public class Deposit {
 
     private String amount;
     private Date completedAt;

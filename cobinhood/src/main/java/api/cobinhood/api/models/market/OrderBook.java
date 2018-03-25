@@ -6,11 +6,11 @@ import java.util.List;
  * Created by joel on 3/19/18.
  */
 
-public class OrderBookItem {
+public class OrderBook {
 
     private int sequence;
-    private List<OfferItem> bids;
-    private List<OfferItem> asks;
+    private List<Offer> bids;
+    private List<Offer> asks;
 
     public int getSequence() {
         return sequence;
@@ -20,19 +20,19 @@ public class OrderBookItem {
         this.sequence = sequence;
     }
 
-    public List<OfferItem> getBids() {
+    public List<Offer> getBids() {
         return bids;
     }
 
-    public void setBids(List<OfferItem> bids) {
+    public void setBids(List<Offer> bids) {
         this.bids = bids;
     }
 
-    public List<OfferItem> getAsks() {
+    public List<Offer> getAsks() {
         return asks;
     }
 
-    public void setAsks(List<OfferItem> asks) {
+    public void setAsks(List<Offer> asks) {
         this.asks = asks;
     }
 }

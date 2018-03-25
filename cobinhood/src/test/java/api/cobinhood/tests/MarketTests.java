@@ -3,10 +3,13 @@ package api.cobinhood.tests;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.CobinResponse;
-import api.cobinhood.api.models.market.CurrenciesResult;
+import api.cobinhood.api.models.market.Currency;
+import api.cobinhood.utils.BuildConfig;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -24,6 +27,7 @@ public class MarketTests {
     @Before
     public void setup()
     {
+        
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -35,14 +39,14 @@ public class MarketTests {
     @Test
     public void CurrenciesTest()
     {
-        TestObserver<CobinResponse<CurrenciesResult>> observer = cobinhoodService.getAllCurrencies().test();
+        TestObserver<CobinResponse<List<Currency>>> observer = cobinhoodService.getAllCurrencies().test();
 
         observer.assertNoErrors();
 
-        CurrenciesResult value = observer.values().get(0).getResult();
+        List<Currency> value = observer.values().get(0).getResult();
 
-        assertNotNull(value.getCurrencies());
-        assertTrue(value.getCurrencies().size()>1);
+        assertNotNull(value);
+        assertTrue(value.size()>1);
 
     }
 }

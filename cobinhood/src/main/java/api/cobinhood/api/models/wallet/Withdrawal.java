@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by joel on 3/24/18.
  */
 
-public class WithdrawalItem {
+public class Withdrawal {
 
     private String amount;
     private Date completedAt;

@@ -4,7 +4,7 @@ package api.cobinhood.api.models.market;
  * Created by joel on 3/19/18.
  */
 
-public class TradingPairItem {
+public class TradingPair {
     private String id;
     private String baseCurrencyId;
     private String quoteCurrencyId;

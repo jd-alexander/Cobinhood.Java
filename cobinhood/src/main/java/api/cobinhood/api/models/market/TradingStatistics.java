@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by joel on 3/19/18.
  */
 
-public class TradingStatisticsItem {
+public class TradingStatistics {
 
     private String id;
     private String lastPrice;

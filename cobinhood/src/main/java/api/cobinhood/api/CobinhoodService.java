@@ -1,29 +1,25 @@
 package api.cobinhood.api;
 
+import java.util.Date;
+import java.util.List;
+
 import api.cobinhood.api.models.CobinResponse;
-import api.cobinhood.api.models.chart.CandleResult;
+import api.cobinhood.api.models.chart.Candle;
 import api.cobinhood.api.models.chart.Timeframe;
-import api.cobinhood.api.models.market.CurrenciesResult;
-import api.cobinhood.api.models.market.OrderBookResult;
-import api.cobinhood.api.models.market.TickerResult;
-import api.cobinhood.api.models.market.TradeResult;
-import api.cobinhood.api.models.market.TradesResult;
-import api.cobinhood.api.models.market.TradingPairsResult;
-import api.cobinhood.api.models.market.TradingStatisticsResult;
-import api.cobinhood.api.models.system.SystemInformationResult;
-import api.cobinhood.api.models.system.SystemTimeResult;
-import api.cobinhood.api.models.trading.OrderHistoryResult;
-import api.cobinhood.api.models.trading.OrderItem;
-import api.cobinhood.api.models.trading.OrderResult;
-import api.cobinhood.api.models.trading.OrdersResult;
-import api.cobinhood.api.models.wallet.DepositAddressesResult;
-import api.cobinhood.api.models.wallet.BalancesResult;
-import api.cobinhood.api.models.wallet.DepositResult;
-import api.cobinhood.api.models.wallet.DepositsResult;
-import api.cobinhood.api.models.wallet.LedgerResult;
-import api.cobinhood.api.models.wallet.WithdrawalAddressesResult;
-import api.cobinhood.api.models.wallet.WithdrawalResult;
-import api.cobinhood.api.models.wallet.WithdrawalsResult;
+import api.cobinhood.api.models.market.Currency;
+import api.cobinhood.api.models.market.OrderBook;
+import api.cobinhood.api.models.market.Ticker;
+import api.cobinhood.api.models.market.Trade;
+import api.cobinhood.api.models.market.TradingPair;
+import api.cobinhood.api.models.market.TradingStatistics;
+import api.cobinhood.api.models.system.SystemInformation;
+import api.cobinhood.api.models.trading.Deposit;
+import api.cobinhood.api.models.trading.Order;
+import api.cobinhood.api.models.wallet.Balance;
+import api.cobinhood.api.models.wallet.DepositAddress;
+import api.cobinhood.api.models.wallet.Ledger;
+import api.cobinhood.api.models.wallet.Withdrawal;
+import api.cobinhood.api.models.wallet.WithdrawalAddress;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -69,85 +65,85 @@ public interface CobinhoodService {
     //Market API calls
 
     @GET(GetSystemTime)
-    Single<CobinResponse<SystemTimeResult>> getSystemTime();
+    Single<CobinResponse<Date>> getSystemTime();
 
     @GET(GetSystemInformation)
-    Single<CobinResponse<SystemInformationResult>> getSystemInformation();
+    Single<CobinResponse<SystemInformation>> getSystemInformation();
 
     @GET(GetAllCurrencies)
-    Single<CobinResponse<CurrenciesResult>> getAllCurrencies();
+    Single<CobinResponse<List<Currency>>> getAllCurrencies();
 
     @GET(GetAllTradingPairs)
-    Single<CobinResponse<TradingPairsResult>> getAllTradingPairs();
+    Single<CobinResponse<List<TradingPair>>> getAllTradingPairs();
 
     @GET(GetOrderBook)
-    Single<CobinResponse<OrderBookResult>> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+    Single<CobinResponse<OrderBook>> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetTradingStatistics)
-    Single<CobinResponse<TradingStatisticsResult>> getTradingStatistics();
+    Single<CobinResponse<List<TradingStatistics>>> getTradingStatistics();
 
     @GET(GetTicker)
-    Single<CobinResponse<TickerResult>> getTicker(@Path("trading_pair_id") String tradingPairId);
+    Single<CobinResponse<Ticker>> getTicker(@Path("trading_pair_id") String tradingPairId);
 
     @GET(GetRecentTrades)
-    Single<CobinResponse<TradesResult>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Trade>>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetCandles)
-    Single<CobinResponse<CandleResult>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe,@Path("start_time") long startTime, @Path("end_time")long endTime);
+    Single<CobinResponse<List<Candle>>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe, @Path("start_time") long startTime, @Path("end_time")long endTime);
 
     //Trading API calls
 
     @GET(GetOrder)
-    Single<CobinResponse<OrderItem>> getOrder(@Path("order_id") String orderId);
+    Single<CobinResponse<Order>> getOrder(@Path("order_id") String orderId);
 
     @GET(GetOrderTrades)
-    Single<CobinResponse<TradesResult>> getOrderTrades(@Path("order_id") String orderId);
+    Single<CobinResponse<List<Trade>>> getOrderTrades(@Path("order_id") String orderId);
 
     @GET(GetAllOrders)
-    Single<CobinResponse<OrdersResult>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Order>>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @POST(PlaceOrder)
-    Single<CobinResponse<OrderResult>> placeOrder(@Body OrderItem order);
+    Single<CobinResponse<Order>> placeOrder(@Body Order order);
 
     @DELETE(CancelOrder)
     Single<CobinResponse> cancelOrder(@Path("order_id") String orderId);
 
     @GET(GetOrderHistory)
-    Single<CobinResponse<OrderHistoryResult>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Order>>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetTrade)
-    Single<CobinResponse<TradeResult>> getTrade(@Path("trade_id") String tradeId);
+    Single<CobinResponse<Trade>> getTrade(@Path("trade_id") String tradeId);
 
     @PUT(ModifyOrder)
-    Single<CobinResponse> modifyOrder(@Body OrderItem order, @Path("order_id") String orderId);
+    Single<CobinResponse> modifyOrder(@Body Order order, @Path("order_id") String orderId);
 
     @GET(GetTradeHistory)
-    Single<CobinResponse<TradesResult>> getTradeHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Trade>>> getTradeHistory(@Query("page") Integer page, @Query("limit") Integer limit);
 
     //wallet API calls
 
     @GET(GetWalletBalances)
-    Single<CobinResponse<BalancesResult>> getWalletBalances();
+    Single<CobinResponse<List<Balance>>> getWalletBalances();
 
     @GET(GetLedgerEntries)
-    Single<CobinResponse<LedgerResult>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Ledger>>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetDepositAddresses)
-    Single<CobinResponse<DepositAddressesResult>> getDepositAddresses(@Query("currency") String currency);
+    Single<CobinResponse<List<DepositAddress>>> getDepositAddresses(@Query("currency") String currency);
 
     @GET(GetWithdrawalAddresses)
-    Single<CobinResponse<WithdrawalAddressesResult>> getWithdrawalAddresses(@Query("currency") String currency);
+    Single<CobinResponse<List<WithdrawalAddress>>> getWithdrawalAddresses(@Query("currency") String currency);
 
     @GET(GetWithdrawal)
-    Single<CobinResponse<WithdrawalResult>> getWithdrawal(@Path("withdrawal_id") String withdrawalId);
+    Single<CobinResponse<Withdrawal>> getWithdrawal(@Path("withdrawal_id") String withdrawalId);
 
     @GET(GetAllWithdrawals)
-    Single<CobinResponse<WithdrawalsResult>> getWithdrawals(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<CobinResponse<List<Withdrawal>>> getWithdrawals(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetDeposit)
-    Single<CobinResponse<DepositResult>> getDeposit(@Path("deposit_id") String depositId);
+    Single<CobinResponse<Deposit>> getDeposit(@Path("deposit_id") String depositId);
 
     @GET(GetAllDeposits)
-    Single<CobinResponse<DepositsResult>> getDeposits();
+    Single<CobinResponse<List<Deposit>>> getDeposits();
 
 }

@@ -7,14 +7,14 @@ package api.cobinhood.api.models;
 
 public class CobinResponse<T> {
 
-    private T result;
+    private CobinResult<T> result;
     private boolean success;
 
     public T getResult() {
-        return result;
+        return result.getValue();
     }
 
-    public void setResult(T result) {
+    public void setResult(CobinResult<T> result) {
         this.result = result;
     }
 

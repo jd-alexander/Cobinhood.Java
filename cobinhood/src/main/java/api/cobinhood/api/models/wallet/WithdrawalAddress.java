@@ -4,7 +4,7 @@ package api.cobinhood.api.models.wallet;
  * Created by joel on 3/23/18.
  */
 
-public class WithdrawalAddressItem {
+public class WithdrawalAddress {
 
     private String type;
     private String currency;

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by joel on 3/23/18.
  */
 
-public class LedgerItem {
+public class Ledger {
     private Date timestamp;
     private String currency;
     private String type;

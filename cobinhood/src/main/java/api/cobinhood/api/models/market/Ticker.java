@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by joel on 3/19/18.
  */
 
-public class TickerItem {
+public class Ticker {
     private String tradingPairId;
     private Date timestamp;
     @SerializedName("24h_high")

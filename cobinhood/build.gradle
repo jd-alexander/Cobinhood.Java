@@ -1,5 +1,19 @@
 apply plugin: 'java-library'
+apply plugin: 'de.fuerstenau.buildconfig'
+buildConfig {
+    appName = project.name
+    version = project.version
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def apiKey = properties.getProperty('api.key')
+
+    buildConfigField 'String', 'API_KEY', apiKey
+
+    clsName = 'BuildConfig'
+    packageName = 'api.cobinhood.utils'
+    charset = 'UTF-8'
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -10,6 +24,10 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
+}
+
+sourceSets.main.java {
+    srcDir new File(buildDir, 'gen')
 }
 
 sourceCompatibility = "1.8"
