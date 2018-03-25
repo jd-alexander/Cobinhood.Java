@@ -2,7 +2,6 @@ package api.cobinhood;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.Date;
@@ -13,7 +12,7 @@ import api.cobinhood.converters.DateConverter;
 import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.converters.RetrofitEnumConverter;
 import api.cobinhood.interceptors.AuthenticationInterceptor;
-import api.cobinhood.models.market.OfferItem;
+import api.cobinhood.api.models.market.OfferItem;
 import api.cobinhood.serializers.DateDeserializer;
 import api.cobinhood.serializers.DateSerializer;
 import api.cobinhood.serializers.OfferDeserializer;

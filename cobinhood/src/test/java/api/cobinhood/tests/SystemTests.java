@@ -5,9 +5,9 @@ import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.models.CobinResponse;
-import api.cobinhood.models.system.SystemInformationResult;
-import api.cobinhood.models.system.SystemTimeResult;
+import api.cobinhood.api.models.CobinResponse;
+import api.cobinhood.api.models.system.SystemInformationResult;
+import api.cobinhood.api.models.system.SystemTimeResult;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 

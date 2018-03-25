@@ -1,6 +1,5 @@
 package api.cobinhood.serializers;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -10,7 +9,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import api.cobinhood.models.market.OfferItem;
+import api.cobinhood.api.models.market.OfferItem;
 
 /**
  * Created by joel on 3/24/18.

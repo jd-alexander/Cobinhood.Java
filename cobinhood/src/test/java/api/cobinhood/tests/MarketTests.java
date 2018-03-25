@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.models.CobinResponse;
-import api.cobinhood.models.market.CurrenciesResult;
+import api.cobinhood.api.models.CobinResponse;
+import api.cobinhood.api.models.market.CurrenciesResult;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
