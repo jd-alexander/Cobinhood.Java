@@ -27,7 +27,7 @@ public class MarketTests {
     @Before
     public void setup()
     {
-        
+
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 

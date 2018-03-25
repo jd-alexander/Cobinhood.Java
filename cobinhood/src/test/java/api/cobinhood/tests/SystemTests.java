@@ -1,6 +1,7 @@
 package api.cobinhood.tests;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Date;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by joel on 3/18/18.
  */
 
-public class SystemTests {
+public class SystemTests extends BaseTest {
 
     private CobinhoodService cobinhoodService;
 

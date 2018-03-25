@@ -4,6 +4,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -42,14 +44,14 @@ public class CobinhoodApi {
      */
     public static class Builder {
         private String accessToken;
-        private Interceptor loggingInterceptor;
+        private List<Interceptor> interceptors;
 
-        public Interceptor getLoggingInterceptor() {
-            return loggingInterceptor;
+        public List<Interceptor> getInterceptors() {
+            return interceptors;
         }
 
-        public Builder setLoggingInterceptor(Interceptor loggingInterceptor) {
-            this.loggingInterceptor = loggingInterceptor;
+        public Builder setLoggingInterceptor(Interceptor... interceptors) {
+            this.interceptors.addAll(Arrays.asList(interceptors));
 
             return this;
         }
@@ -74,8 +76,10 @@ public class CobinhoodApi {
 
             OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
-            if (loggingInterceptor != null) {
-                okHttpBuilder.addInterceptor(loggingInterceptor);
+            if (interceptors != null && !interceptors.isEmpty()) {
+
+                for(Interceptor interceptor:interceptors)
+                okHttpBuilder.addInterceptor(interceptor);
             }
 
             if (!isEmpty(accessToken)) {
