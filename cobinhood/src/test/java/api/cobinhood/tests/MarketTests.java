@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
@@ -13,6 +15,7 @@ import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -24,8 +27,7 @@ public class MarketTests {
     private CobinhoodService cobinhoodService;
 
     @Before
-    public void setup()
-    {
+    public void setup() {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -37,8 +39,7 @@ public class MarketTests {
     }
 
     @Test
-    public void CurrenciesTest()
-    {
+    public void CurrenciesTest() {
         TestObserver<CobinResponse<List<Currency>>> observer = cobinhoodService.getAllCurrencies().test();
 
         observer.assertNoErrors();
@@ -46,7 +47,10 @@ public class MarketTests {
         List<Currency> value = observer.values().get(0).getResult();
 
         assertNotNull(value);
-        assertTrue(value.size()>1);
+
+        assertTrue(value.size() > 1);
 
     }
+
+
 }
