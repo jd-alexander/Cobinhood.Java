@@ -9,7 +9,6 @@ import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.CobinResponse;
 import api.cobinhood.api.models.market.Currency;
-import api.cobinhood.utils.BuildConfig;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -36,6 +35,7 @@ public class MarketTests {
                 .build();
 
     }
+
     @Test
     public void CurrenciesTest()
     {

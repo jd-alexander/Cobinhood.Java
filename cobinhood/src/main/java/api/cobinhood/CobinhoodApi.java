@@ -51,6 +51,11 @@ public class CobinhoodApi {
         }
 
         public Builder setLoggingInterceptor(Interceptor... interceptors) {
+
+            if(this.interceptors==null)
+                this.interceptors = new ArrayList<>();
+
+            if(interceptors!=null && interceptors.length>0)
             this.interceptors.addAll(Arrays.asList(interceptors));
 
             return this;
