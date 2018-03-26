@@ -4,6 +4,9 @@ package api.cobinhood.websocket;
 import com.jakewharton.rxrelay2.PublishRelay;
 
 import api.cobinhood.websocket.models.Event;
+import api.cobinhood.websocket.models.Open;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
@@ -16,8 +19,30 @@ import okio.ByteString;
 public class CobinhoodSocket {
 
     private WebSocket webSocket;
+    private Request request;
 
     private PublishRelay<Event> eventStream = PublishRelay.create();
+    private boolean userRequestedClose;
+
+    private void doConnect() {
+
+        if (webSocket != null) {
+            if (eventStream.hasObservers()) {
+                eventStream.accept(new Open());
+            }
+            return;
+        }
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        okHttpClient.newWebSocket(request, webSocketListener());
+    }
+
+    private void doDisconnect(int code, String reason) {
+        userRequestedClose = true;
+        if (webSocket != null) {
+            webSocket.close(code, reason);
+        }
+    }
 
 
 
