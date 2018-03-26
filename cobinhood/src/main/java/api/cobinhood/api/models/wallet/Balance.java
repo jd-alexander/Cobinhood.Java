@@ -1,5 +1,7 @@
 package api.cobinhood.api.models.wallet;
 
+import java.math.BigDecimal;
+
 /**
  * Created by joel on 3/23/18.
  */
@@ -8,11 +10,11 @@ public class Balance {
 
     private String currency;
     private String type;
-    private String total;
-    private String onOrder;
+    private BigDecimal total;
+    private BigDecimal onOrder;
     private Boolean locked;
-    private double usdValue;
-    private double btcValue;
+    private BigDecimal usdValue;
+    private BigDecimal btcValue;
 
     public String getCurrency() {
         return currency;
@@ -30,19 +32,19 @@ public class Balance {
         this.type = type;
     }
 
-    public String getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public String getOnOrder() {
+    public BigDecimal getOnOrder() {
         return onOrder;
     }
 
-    public void setOnOrder(String onOrder) {
+    public void setOnOrder(BigDecimal onOrder) {
         this.onOrder = onOrder;
     }
 
@@ -54,19 +56,32 @@ public class Balance {
         this.locked = locked;
     }
 
-    public double getUsdValue() {
+    public BigDecimal getUsdValue() {
         return usdValue;
     }
 
-    public void setUsdValue(double usdValue) {
+    public void setUsdValue(BigDecimal usdValue) {
         this.usdValue = usdValue;
     }
 
-    public double getBtcValue() {
+    public BigDecimal getBtcValue() {
         return btcValue;
     }
 
-    public void setBtcValue(double btcValue) {
+    public void setBtcValue(BigDecimal btcValue) {
         this.btcValue = btcValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Balance{" +
+                "currency='" + currency + '\'' +
+                ", type='" + type + '\'' +
+                ", total=" + total +
+                ", onOrder=" + onOrder +
+                ", locked=" + locked +
+                ", usdValue=" + usdValue +
+                ", btcValue=" + btcValue +
+                '}';
     }
 }

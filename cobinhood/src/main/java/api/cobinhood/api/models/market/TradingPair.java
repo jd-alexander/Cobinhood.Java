@@ -1,5 +1,7 @@
 package api.cobinhood.api.models.market;
 
+import java.math.BigDecimal;
+
 /**
  * Created by joel on 3/19/18.
  */
@@ -8,9 +10,11 @@ public class TradingPair {
     private String id;
     private String baseCurrencyId;
     private String quoteCurrencyId;
-    private String baseMinSize;
-    private String baseMaxSize;
-    private String quoteIncrement;
+    private BigDecimal baseMinSize;
+    private BigDecimal baseMaxSize;
+    private BigDecimal quoteIncrement;
+    private boolean marginEnabled;
+    private boolean isActive;
 
     public String getId() {
         return id;
@@ -36,28 +40,58 @@ public class TradingPair {
         this.quoteCurrencyId = quoteCurrencyId;
     }
 
-    public String getBaseMinSize() {
+    public BigDecimal getBaseMinSize() {
         return baseMinSize;
     }
 
-    public void setBaseMinSize(String baseMinSize) {
+    public void setBaseMinSize(BigDecimal baseMinSize) {
         this.baseMinSize = baseMinSize;
     }
 
-    public String getBaseMaxSize() {
+    public BigDecimal getBaseMaxSize() {
         return baseMaxSize;
     }
 
-    public void setBaseMaxSize(String baseMaxSize) {
+    public void setBaseMaxSize(BigDecimal baseMaxSize) {
         this.baseMaxSize = baseMaxSize;
     }
 
-    public String getQuoteIncrement() {
+    public BigDecimal getQuoteIncrement() {
         return quoteIncrement;
     }
 
-    public void setQuoteIncrement(String quoteIncrement) {
+    public void setQuoteIncrement(BigDecimal quoteIncrement) {
         this.quoteIncrement = quoteIncrement;
+    }
+
+    public boolean isMarginEnabled() {
+        return marginEnabled;
+    }
+
+    public void setMarginEnabled(boolean marginEnabled) {
+        this.marginEnabled = marginEnabled;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    @Override
+    public String toString() {
+        return "TradingPair{" +
+                "id='" + id + '\'' +
+                ", baseCurrencyId='" + baseCurrencyId + '\'' +
+                ", quoteCurrencyId='" + quoteCurrencyId + '\'' +
+                ", baseMinSize=" + baseMinSize +
+                ", baseMaxSize=" + baseMaxSize +
+                ", quoteIncrement=" + quoteIncrement +
+                ", marginEnabled=" + marginEnabled +
+                ", isActive=" + isActive +
+                '}';
     }
 }
 

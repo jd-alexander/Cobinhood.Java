@@ -2,6 +2,8 @@ package api.cobinhood.api.models.market;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigDecimal;
+
 /**
  * Created by joel on 3/18/18.
  */
@@ -16,12 +18,12 @@ public class Currency {
     private boolean marginEnabled;
     private boolean fundingFrozen;
     private boolean withdrawalFrozen;
-    private double minUnit;
-    private double depositFee;
-    private double withdrawalFee;
-    private double interestIncrement;
-    private double minWithdrawal;
-    private double fundingMinSize;
+    private BigDecimal minUnit;
+    private BigDecimal depositFee;
+    private BigDecimal withdrawalFee;
+    private BigDecimal interestIncrement;
+    private BigDecimal minWithdrawal;
+    private BigDecimal fundingMinSize;
 
     public String getTicker() {
         return ticker;
@@ -79,51 +81,70 @@ public class Currency {
         this.withdrawalFrozen = withdrawalFrozen;
     }
 
-    public double getMinUnit() {
+    public BigDecimal getMinUnit() {
         return minUnit;
     }
 
-    public void setMinUnit(double minUnit) {
+    public void setMinUnit(BigDecimal minUnit) {
         this.minUnit = minUnit;
     }
 
-    public double getDepositFee() {
+    public BigDecimal getDepositFee() {
         return depositFee;
     }
 
-    public void setDepositFee(double depositFee) {
+    public void setDepositFee(BigDecimal depositFee) {
         this.depositFee = depositFee;
     }
 
-    public double getWithdrawalFee() {
+    public BigDecimal getWithdrawalFee() {
         return withdrawalFee;
     }
 
-    public void setWithdrawalFee(double withdrawalFee) {
+    public void setWithdrawalFee(BigDecimal withdrawalFee) {
         this.withdrawalFee = withdrawalFee;
     }
 
-    public double getInterestIncrement() {
+    public BigDecimal getInterestIncrement() {
         return interestIncrement;
     }
 
-    public void setInterestIncrement(double interestIncrement) {
+    public void setInterestIncrement(BigDecimal interestIncrement) {
         this.interestIncrement = interestIncrement;
     }
 
-    public double getMinWithdrawal() {
+    public BigDecimal getMinWithdrawal() {
         return minWithdrawal;
     }
 
-    public void setMinWithdrawal(double minWithdrawal) {
+    public void setMinWithdrawal(BigDecimal minWithdrawal) {
         this.minWithdrawal = minWithdrawal;
     }
 
-    public double getFundingMinSize() {
+    public BigDecimal getFundingMinSize() {
         return fundingMinSize;
     }
 
-    public void setFundingMinSize(double fundingMinSize) {
+    public void setFundingMinSize(BigDecimal fundingMinSize) {
         this.fundingMinSize = fundingMinSize;
+    }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "ticker='" + ticker + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", isActive=" + isActive +
+                ", marginEnabled=" + marginEnabled +
+                ", fundingFrozen=" + fundingFrozen +
+                ", withdrawalFrozen=" + withdrawalFrozen +
+                ", minUnit=" + minUnit +
+                ", depositFee=" + depositFee +
+                ", withdrawalFee=" + withdrawalFee +
+                ", interestIncrement=" + interestIncrement +
+                ", minWithdrawal=" + minWithdrawal +
+                ", fundingMinSize=" + fundingMinSize +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.trading;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,16 +10,17 @@ import java.util.Date;
 public class Order {
 
     private String id;
-    private String tradingPair;
+    private String tradingPairId;
     private String side;
     private String type;
-    private String price;
-    private String size;
-    private String filled;
+    private BigDecimal price;
+    private BigDecimal size;
+    private BigDecimal filled;
     private String state;
     private Date timestamp;
-    private String eqPrice;
+    private BigDecimal eqPrice;
     private Date completedAt;
+
 
     public String getId() {
         return id;
@@ -28,12 +30,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getTradingPair() {
-        return tradingPair;
+    public String getTradingPairId() {
+        return tradingPairId;
     }
 
-    public void setTradingPair(String tradingPair) {
-        this.tradingPair = tradingPair;
+    public void setTradingPairId(String tradingPairId) {
+        this.tradingPairId = tradingPairId;
     }
 
     public String getSide() {
@@ -52,27 +54,27 @@ public class Order {
         this.type = type;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public String getSize() {
+    public BigDecimal getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(BigDecimal size) {
         this.size = size;
     }
 
-    public String getFilled() {
+    public BigDecimal getFilled() {
         return filled;
     }
 
-    public void setFilled(String filled) {
+    public void setFilled(BigDecimal filled) {
         this.filled = filled;
     }
 
@@ -84,14 +86,6 @@ public class Order {
         this.state = state;
     }
 
-    public String getEqPrice() {
-        return eqPrice;
-    }
-
-    public void setEqPrice(String eqPrice) {
-        this.eqPrice = eqPrice;
-    }
-
     public Date getTimestamp() {
         return timestamp;
     }
@@ -100,11 +94,36 @@ public class Order {
         this.timestamp = timestamp;
     }
 
+    public BigDecimal getEqPrice() {
+        return eqPrice;
+    }
+
+    public void setEqPrice(BigDecimal eqPrice) {
+        this.eqPrice = eqPrice;
+    }
+
     public Date getCompletedAt() {
         return completedAt;
     }
 
     public void setCompletedAt(Date completedAt) {
         this.completedAt = completedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", tradingPairId='" + tradingPairId + '\'' +
+                ", side='" + side + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", size=" + size +
+                ", filled=" + filled +
+                ", state='" + state + '\'' +
+                ", timestamp=" + timestamp +
+                ", eqPrice=" + eqPrice +
+                ", completedAt=" + completedAt +
+                '}';
     }
 }

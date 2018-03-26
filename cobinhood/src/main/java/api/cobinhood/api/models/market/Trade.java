@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.market;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,10 +10,11 @@ import java.util.Date;
 public class Trade {
 
     private String id;
-    private String price;
-    private String size;
+    private BigDecimal price;
+    private BigDecimal size;
     private String makerSide;
     private Date timestamp;
+
 
     public String getId() {
         return id;
@@ -22,19 +24,19 @@ public class Trade {
         this.id = id;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public String getSize() {
+    public BigDecimal getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(BigDecimal size) {
         this.size = size;
     }
 
@@ -46,4 +48,22 @@ public class Trade {
         this.makerSide = makerSide;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Trade{" +
+                "id='" + id + '\'' +
+                ", price=" + price +
+                ", size=" + size +
+                ", makerSide='" + makerSide + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }

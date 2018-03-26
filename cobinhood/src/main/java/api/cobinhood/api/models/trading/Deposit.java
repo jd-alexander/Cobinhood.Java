@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.trading;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -8,26 +9,18 @@ import java.util.Date;
 
 public class Deposit {
 
-    private String amount;
+    private BigDecimal amount;
     private Date completedAt;
     private Integer confirmations;
     private Date createdAt;
     private String currency;
     private String depositId;
-    private String fee;
+    private BigDecimal fee;
     private String fromAddress;
     private Integer requiredConfirmations;
     private String status;
     private String txhash;
     private String userId;
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
 
 
     public Integer getConfirmations() {
@@ -53,14 +46,6 @@ public class Deposit {
 
     public void setDepositId(String depositId) {
         this.depositId = depositId;
-    }
-
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(String fee) {
-        this.fee = fee;
     }
 
     public String getFromAddress() {
@@ -117,5 +102,39 @@ public class Deposit {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getFee() {
+        return fee;
+    }
+
+    public void setFee(BigDecimal fee) {
+        this.fee = fee;
+    }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "amount=" + amount +
+                ", completedAt=" + completedAt +
+                ", confirmations=" + confirmations +
+                ", createdAt=" + createdAt +
+                ", currency='" + currency + '\'' +
+                ", depositId='" + depositId + '\'' +
+                ", fee=" + fee +
+                ", fromAddress='" + fromAddress + '\'' +
+                ", requiredConfirmations=" + requiredConfirmations +
+                ", status='" + status + '\'' +
+                ", txhash='" + txhash + '\'' +
+                ", userId='" + userId + '\'' +
+                '}';
     }
 }

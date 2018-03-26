@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.wallet;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -11,8 +12,8 @@ public class Ledger {
     private String currency;
     private String type;
     private String action;
-    private String amount;
-    private String balance;
+    private BigDecimal amount;
+    private BigDecimal balance;
     private String tradeId;
     private String depositId;
     private String withdrawalId;
@@ -51,19 +52,19 @@ public class Ledger {
         this.action = action;
     }
 
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public String getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -105,5 +106,22 @@ public class Ledger {
 
     public void setFiatWithdrawalId(String fiatWithdrawalId) {
         this.fiatWithdrawalId = fiatWithdrawalId;
+    }
+
+    @Override
+    public String toString() {
+        return "Ledger{" +
+                "timestamp=" + timestamp +
+                ", currency='" + currency + '\'' +
+                ", type='" + type + '\'' +
+                ", action='" + action + '\'' +
+                ", amount=" + amount +
+                ", balance=" + balance +
+                ", tradeId='" + tradeId + '\'' +
+                ", depositId='" + depositId + '\'' +
+                ", withdrawalId='" + withdrawalId + '\'' +
+                ", fiatDepositId='" + fiatDepositId + '\'' +
+                ", fiatWithdrawalId='" + fiatWithdrawalId + '\'' +
+                '}';
     }
 }

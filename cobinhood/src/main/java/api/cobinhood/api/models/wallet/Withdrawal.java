@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.wallet;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -8,12 +9,12 @@ import java.util.Date;
 
 public class Withdrawal {
 
-    private String amount;
+    private BigDecimal amount;
     private Date completedAt;
     private Integer confirmations;
     private Date createdAt;
     private String currency;
-    private String fee;
+    private BigDecimal fee;
     private Integer requiredConfirmations;
     private Date sentAt;
     private String status;
@@ -23,13 +24,7 @@ public class Withdrawal {
     private String userId;
     private String withdrawalId;
 
-    public String getAmount() {
-        return amount;
-    }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
 
     public Date getCompletedAt() {
         return completedAt;
@@ -63,11 +58,19 @@ public class Withdrawal {
         this.currency = currency;
     }
 
-    public String getFee() {
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getFee() {
         return fee;
     }
 
-    public void setFee(String fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
@@ -133,5 +136,26 @@ public class Withdrawal {
 
     public void setWithdrawalId(String withdrawalId) {
         this.withdrawalId = withdrawalId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Withdrawal{" +
+                "amount=" + amount +
+                ", completedAt=" + completedAt +
+                ", confirmations=" + confirmations +
+                ", createdAt=" + createdAt +
+                ", currency='" + currency + '\'' +
+                ", fee=" + fee +
+                ", requiredConfirmations=" + requiredConfirmations +
+                ", sentAt=" + sentAt +
+                ", status='" + status + '\'' +
+                ", toAddress='" + toAddress + '\'' +
+                ", txhash='" + txhash + '\'' +
+                ", updatedAt=" + updatedAt +
+                ", userId='" + userId + '\'' +
+                ", withdrawalId='" + withdrawalId + '\'' +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package api.cobinhood.api.models.chart;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -8,20 +9,20 @@ import java.util.Date;
 
 public class Candle {
 
-    private String timeframe;
+    private Timeframe timeframe;
     private String tradingPairId;
     private Date timestamp;
-    private String volume;
-    private String open;
-    private String close;
-    private String high;
-    private String low;
+    private BigDecimal volume;
+    private BigDecimal open;
+    private BigDecimal close;
+    private BigDecimal high;
+    private BigDecimal low;
 
-    public String getTimeframe() {
+    public Timeframe getTimeframe() {
         return timeframe;
     }
 
-    public void setTimeframe(String timeframe) {
+    public void setTimeframe(Timeframe timeframe) {
         this.timeframe = timeframe;
     }
 
@@ -33,51 +34,65 @@ public class Candle {
         this.tradingPairId = tradingPairId;
     }
 
-    public String getVolume() {
-        return volume;
-    }
-
-    public void setVolume(String volume) {
-        this.volume = volume;
-    }
-
-    public String getOpen() {
-        return open;
-    }
-
-    public void setOpen(String open) {
-        this.open = open;
-    }
-
-    public String getClose() {
-        return close;
-    }
-
-    public void setClose(String close) {
-        this.close = close;
-    }
-
-    public String getHigh() {
-        return high;
-    }
-
-    public void setHigh(String high) {
-        this.high = high;
-    }
-
-    public String getLow() {
-        return low;
-    }
-
-    public void setLow(String low) {
-        this.low = low;
-    }
-
     public Date getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public BigDecimal getVolume() {
+        return volume;
+    }
+
+    public void setVolume(BigDecimal volume) {
+        this.volume = volume;
+    }
+
+    public BigDecimal getOpen() {
+        return open;
+    }
+
+    public void setOpen(BigDecimal open) {
+        this.open = open;
+    }
+
+    public BigDecimal getClose() {
+        return close;
+    }
+
+    public void setClose(BigDecimal close) {
+        this.close = close;
+    }
+
+    public BigDecimal getHigh() {
+        return high;
+    }
+
+    public void setHigh(BigDecimal high) {
+        this.high = high;
+    }
+
+    public BigDecimal getLow() {
+        return low;
+    }
+
+    public void setLow(BigDecimal low) {
+        this.low = low;
+    }
+
+    @Override
+    public String toString() {
+        return "Candle{" +
+                "timeframe=" + timeframe +
+                ", tradingPairId='" + tradingPairId + '\'' +
+                ", timestamp=" + timestamp +
+                ", volume=" + volume +
+                ", open=" + open +
+                ", close=" + close +
+                ", high=" + high +
+                ", low=" + low +
+                '}';
     }
 }

@@ -1,5 +1,7 @@
 package api.cobinhood.api.models.wallet;
 
+import java.util.Date;
+
 /**
  * Created by joel on 3/23/18.
  */
@@ -9,7 +11,7 @@ public class DepositAddress {
     private String type;
     private String currency;
     private String address;
-    private long createdAt;
+    private Date createdAt;
 
     public String getType() {
         return type;
@@ -35,11 +37,21 @@ public class DepositAddress {
         this.address = address;
     }
 
-    public long getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "DepositAddress{" +
+                "type='" + type + '\'' +
+                ", currency='" + currency + '\'' +
+                ", address='" + address + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
