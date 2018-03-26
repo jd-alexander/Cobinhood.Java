@@ -93,7 +93,7 @@ public interface CobinhoodService {
     Single<Response<List<Trade>>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetCandles)
-    Single<Response<List<Candle>>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe, @Path("start_time") long startTime, @Path("end_time")long endTime);
+    Single<Response<List<Candle>>> getCandles(@Path("trading_pair_id") String tradingPairId, @Query("timeframe") Timeframe timeframe, @Query("start_time") Date startTime, @Query("end_time") Date endTime);
 
     //Trading API calls
 

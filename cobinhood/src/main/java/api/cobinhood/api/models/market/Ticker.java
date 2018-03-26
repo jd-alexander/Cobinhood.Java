@@ -95,4 +95,19 @@ public class Ticker {
     public void setLowestAsk(BigDecimal lowestAsk) {
         this.lowestAsk = lowestAsk;
     }
+
+    @Override
+    public String toString() {
+        return "Ticker{" +
+                "tradingPairId='" + tradingPairId + '\'' +
+                ", timestamp=" + timestamp +
+                ", _24hHigh=" + _24hHigh +
+                ", _24hLow=" + _24hLow +
+                ", _24hOpen=" + _24hOpen +
+                ", _24hVolume=" + _24hVolume +
+                ", lastTradePrice=" + lastTradePrice +
+                ", highestBid=" + highestBid +
+                ", lowestAsk=" + lowestAsk +
+                '}';
+    }
 }

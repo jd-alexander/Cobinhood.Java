@@ -3,7 +3,6 @@ package api.cobinhood.tests;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -11,23 +10,25 @@ import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.MapResponse;
 import api.cobinhood.api.models.Response;
+import api.cobinhood.api.models.chart.Candle;
+import api.cobinhood.api.models.chart.Timeframe;
 import api.cobinhood.api.models.market.Currency;
 import api.cobinhood.api.models.market.OrderBook;
+import api.cobinhood.api.models.market.Ticker;
+import api.cobinhood.api.models.market.Trade;
 import api.cobinhood.api.models.market.TradingPair;
 import api.cobinhood.api.models.market.TradingStatistics;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * Created by joel on 3/19/18.
  */
 
-public class MarketTests {
+public class MarketTests extends BaseTest {
 
     private CobinhoodService cobinhoodService;
 
@@ -51,52 +52,25 @@ public class MarketTests {
 
         List<Currency> value = observer.values().get(0).getResult();
 
-        assertNotNull(value);
+        AssertList(value);
 
-        assertTrue(value.size() > 1);
-
-        System.out.print(value.get(0).toString());
-
-        value.stream().forEach(currency -> {
-
-            for (Field f : currency.getClass().getDeclaredFields()) {
-
-                try {
-                    f.setAccessible(true);
-
-                    if (f.get(currency) != null)
-                        assertTrue(String.format("The property %s of Currency at index %2d isn't null.", f.getName(), value.indexOf(currency)), true);
-                    else
-                        fail(String.format("The property %s of Currency at index %2d is null.", f.getName(), value.indexOf(currency)));
-
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });
     }
 
     @Test
-    public void TradingPairsTest()
-    {
+    public void TradingPairsTest() {
         TestObserver<Response<List<TradingPair>>> observer = cobinhoodService.getAllTradingPairs().test();
 
         observer.assertNoErrors();
 
         List<TradingPair> result = observer.values().get(0).getResult();
 
-        assertNotNull(result);
-
-        assertTrue(result.size() > 1);
-
+        AssertList(result);
 
     }
 
     @Test
-    public void OrderBookTest()
-    {
-        TestObserver<Response<OrderBook>> observer = cobinhoodService.getOrderBook("BOT-BTC",10).test();
+    public void OrderBookTest() {
+        TestObserver<Response<OrderBook>> observer = cobinhoodService.getOrderBook("BOT-BTC", 10).test();
 
         observer.assertNoErrors();
 
@@ -110,20 +84,56 @@ public class MarketTests {
     }
 
     @Test
-    public void TradingStatisticsTest()
-    {
-        TestObserver<MapResponse<Map<String,TradingStatistics>>> observer = cobinhoodService.getTradingStatistics().test();
+    public void TradingStatisticsTest() {
+        TestObserver<MapResponse<Map<String, TradingStatistics>>> observer = cobinhoodService.getTradingStatistics().test();
 
         observer.assertNoErrors();
 
-        Map<String,TradingStatistics> result = observer.values().get(0).getResult();
+        Map<String, TradingStatistics> result = observer.values().get(0).getResult();
 
         assertNotNull(result);
 
         assertTrue(result.size() > 1);
+
         System.out.print(result.entrySet().iterator().next().getValue().toString());
 
     }
+
+    @Test
+    public void TickerTest() {
+        TestObserver<Response<Ticker>> observer = cobinhoodService.getTicker("BOT-BTC").test();
+
+        observer.assertNoErrors();
+
+        Ticker result = observer.values().get(0).getResult();
+
+        Assert(result);
+
+    }
+
+    @Test
+    public void RecentTradesTest() {
+        TestObserver<Response<List<Trade>>> observer = cobinhoodService.getRecentTrades("BOT-BTC", 10).test();
+
+        observer.assertNoErrors();
+
+        List<Trade> result = observer.values().get(0).getResult();
+
+        AssertList(result);
+    }
+
+    @Test
+    public void CandlesTest() {
+        TestObserver<Response<List<Candle>>> observer = cobinhoodService.getCandles("BOT-BTC", Timeframe.TIMEFRAME_1_DAY,null,null).test();
+
+        observer.assertNoErrors();
+
+        List<Candle> result = observer.values().get(0).getResult();
+
+        AssertList(result);
+    }
+
+
 
 
 }

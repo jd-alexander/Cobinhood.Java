@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import api.cobinhood.api.CobinhoodService;
+import api.cobinhood.api.models.chart.Timeframe;
 import api.cobinhood.converters.DateConverter;
 import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
 import api.cobinhood.converters.RetrofitEnumConverter;
@@ -18,6 +19,7 @@ import api.cobinhood.api.models.market.Offer;
 import api.cobinhood.serializers.DateDeserializer;
 import api.cobinhood.serializers.DateSerializer;
 import api.cobinhood.serializers.OfferDeserializer;
+import api.cobinhood.serializers.TimeframeDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -101,6 +103,7 @@ public class CobinhoodApi {
             builder.registerTypeAdapter(new TypeToken<List<Offer>>(){}.getType(),new OfferDeserializer());
             builder.registerTypeAdapter(Date.class, new DateDeserializer());
             builder.registerTypeAdapter(Date.class, new DateSerializer());
+            builder.registerTypeAdapter(Timeframe.class, new TimeframeDeserializer());
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)

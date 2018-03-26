@@ -15,7 +15,7 @@ public class RetrofitEnumConverter extends Converter.Factory {
     public Converter<?, String> stringConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         Converter<?, String> converter = null;
         if (type instanceof Class && ((Class<?>)type).isEnum()) {
-            converter = value -> ((Enum)value).name();
+            converter = value -> ((Enum)value).toString();
         }
         return converter;
     }

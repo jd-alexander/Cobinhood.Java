@@ -1,5 +1,7 @@
 package api.cobinhood.api.models.chart;
 
+import java.util.Arrays;
+
 /**
  * Created by joel on 3/21/18.
  */
@@ -32,6 +34,18 @@ public enum Timeframe {
 
     public String toString() {
         return this.name;
+    }
+
+
+    public static Timeframe getByName(String name) {
+
+        for(Timeframe value:Timeframe.values())
+        {
+            if(value.name.equals(name))
+                return value;
+        }
+
+        return null;
     }
 
 }

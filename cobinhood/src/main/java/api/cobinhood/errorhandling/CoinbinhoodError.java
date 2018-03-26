@@ -1,21 +1,26 @@
 package api.cobinhood.errorhandling;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by joel on 3/17/18.
  */
 
 public class CoinbinhoodError {
+    private Error error;
+    private String requestId;
 
-    List<Map<String, String>> error;
-
-    public List<Map<String, String>> getError() {
+    public Error getError() {
         return error;
     }
 
-    public void setError(List<Map<String, String>> error) {
+    public void setError(Error error) {
         this.error = error;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 }
