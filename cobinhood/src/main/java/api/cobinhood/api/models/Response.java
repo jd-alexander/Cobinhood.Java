@@ -5,16 +5,16 @@ package api.cobinhood.api.models;
  * Created by joel on 3/19/18.
  */
 
-public class CobinResponse<T> {
+public class Response<T> {
 
-    private CobinResult<T> result;
+    private Result<T> result;
     private boolean success;
 
     public T getResult() {
         return result.getValue();
     }
 
-    public void setResult(CobinResult<T> result) {
+    public void setResult(Result<T> result) {
         this.result = result;
     }
 

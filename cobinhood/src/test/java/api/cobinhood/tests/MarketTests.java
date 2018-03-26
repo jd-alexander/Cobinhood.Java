@@ -4,15 +4,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
-import api.cobinhood.api.models.CobinResponse;
+import api.cobinhood.api.models.MapResponse;
+import api.cobinhood.api.models.Response;
 import api.cobinhood.api.models.market.Currency;
 import api.cobinhood.api.models.market.OrderBook;
 import api.cobinhood.api.models.market.TradingPair;
+import api.cobinhood.api.models.market.TradingStatistics;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -43,7 +45,7 @@ public class MarketTests {
 
     @Test
     public void CurrenciesTest() {
-        TestObserver<CobinResponse<List<Currency>>> observer = cobinhoodService.getAllCurrencies().test();
+        TestObserver<Response<List<Currency>>> observer = cobinhoodService.getAllCurrencies().test();
 
         observer.assertNoErrors();
 
@@ -78,7 +80,7 @@ public class MarketTests {
     @Test
     public void TradingPairsTest()
     {
-        TestObserver<CobinResponse<List<TradingPair>>> observer = cobinhoodService.getAllTradingPairs().test();
+        TestObserver<Response<List<TradingPair>>> observer = cobinhoodService.getAllTradingPairs().test();
 
         observer.assertNoErrors();
 
@@ -94,7 +96,7 @@ public class MarketTests {
     @Test
     public void OrderBookTest()
     {
-        TestObserver<CobinResponse<OrderBook>> observer = cobinhoodService.getOrderBook("BOT-BTC",10).test();
+        TestObserver<Response<OrderBook>> observer = cobinhoodService.getOrderBook("BOT-BTC",10).test();
 
         observer.assertNoErrors();
 
@@ -104,6 +106,22 @@ public class MarketTests {
         assertNotNull(result.getBids());
         assertNotNull(result.getBids().get(0).getPrice());
         System.out.print(result.getBids().get(0).toString());
+
+    }
+
+    @Test
+    public void TradingStatisticsTest()
+    {
+        TestObserver<MapResponse<Map<String,TradingStatistics>>> observer = cobinhoodService.getTradingStatistics().test();
+
+        observer.assertNoErrors();
+
+        Map<String,TradingStatistics> result = observer.values().get(0).getResult();
+
+        assertNotNull(result);
+
+        assertTrue(result.size() > 1);
+        System.out.print(result.entrySet().iterator().next().getValue().toString());
 
     }
 

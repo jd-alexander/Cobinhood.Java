@@ -2,8 +2,10 @@ package api.cobinhood.api;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import api.cobinhood.api.models.CobinResponse;
+import api.cobinhood.api.models.Response;
+import api.cobinhood.api.models.MapResponse;
 import api.cobinhood.api.models.chart.Candle;
 import api.cobinhood.api.models.chart.Timeframe;
 import api.cobinhood.api.models.market.Currency;
@@ -62,88 +64,90 @@ import static api.cobinhood.utils.Endpoints.PlaceOrder;
 
 public interface CobinhoodService {
 
-    //Market API calls
+    //System API calls
 
     @GET(GetSystemTime)
-    Single<CobinResponse<Date>> getSystemTime();
+    Single<Response<Date>> getSystemTime();
 
     @GET(GetSystemInformation)
-    Single<CobinResponse<SystemInformation>> getSystemInformation();
+    Single<Response<SystemInformation>> getSystemInformation();
+
+    //Market API calls
 
     @GET(GetAllCurrencies)
-    Single<CobinResponse<List<Currency>>> getAllCurrencies();
+    Single<Response<List<Currency>>> getAllCurrencies();
 
     @GET(GetAllTradingPairs)
-    Single<CobinResponse<List<TradingPair>>> getAllTradingPairs();
+    Single<Response<List<TradingPair>>> getAllTradingPairs();
 
     @GET(GetOrderBook)
-    Single<CobinResponse<OrderBook>> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+    Single<Response<OrderBook>> getOrderBook(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetTradingStatistics)
-    Single<CobinResponse<List<TradingStatistics>>> getTradingStatistics();
+    Single<MapResponse<Map<String,TradingStatistics>>> getTradingStatistics();
 
     @GET(GetTicker)
-    Single<CobinResponse<Ticker>> getTicker(@Path("trading_pair_id") String tradingPairId);
+    Single<Response<Ticker>> getTicker(@Path("trading_pair_id") String tradingPairId);
 
     @GET(GetRecentTrades)
-    Single<CobinResponse<List<Trade>>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
+    Single<Response<List<Trade>>> getRecentTrades(@Path("trading_pair_id") String tradingPairId, @Query("limit") Integer limit);
 
     @GET(GetCandles)
-    Single<CobinResponse<List<Candle>>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe, @Path("start_time") long startTime, @Path("end_time")long endTime);
+    Single<Response<List<Candle>>> getCandles(@Path("trading_pair_id") String tradingPairId, @Path("timeframe")Timeframe timeframe, @Path("start_time") long startTime, @Path("end_time")long endTime);
 
     //Trading API calls
 
     @GET(GetOrder)
-    Single<CobinResponse<Order>> getOrder(@Path("order_id") String orderId);
+    Single<Response<Order>> getOrder(@Path("order_id") String orderId);
 
     @GET(GetOrderTrades)
-    Single<CobinResponse<List<Trade>>> getOrderTrades(@Path("order_id") String orderId);
+    Single<Response<List<Trade>>> getOrderTrades(@Path("order_id") String orderId);
 
     @GET(GetAllOrders)
-    Single<CobinResponse<List<Order>>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<Response<List<Order>>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @POST(PlaceOrder)
-    Single<CobinResponse<Order>> placeOrder(@Body Order order);
+    Single<Response<Order>> placeOrder(@Body Order order);
 
     @DELETE(CancelOrder)
-    Single<CobinResponse> cancelOrder(@Path("order_id") String orderId);
+    Single<Response> cancelOrder(@Path("order_id") String orderId);
 
     @GET(GetOrderHistory)
-    Single<CobinResponse<List<Order>>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<Response<List<Order>>> getOrderHistory(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetTrade)
-    Single<CobinResponse<Trade>> getTrade(@Path("trade_id") String tradeId);
+    Single<Response<Trade>> getTrade(@Path("trade_id") String tradeId);
 
     @PUT(ModifyOrder)
-    Single<CobinResponse> modifyOrder(@Body Order order, @Path("order_id") String orderId);
+    Single<Response> modifyOrder(@Body Order order, @Path("order_id") String orderId);
 
     @GET(GetTradeHistory)
-    Single<CobinResponse<List<Trade>>> getTradeHistory(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<Response<List<Trade>>> getTradeHistory(@Query("page") Integer page, @Query("limit") Integer limit);
 
     //wallet API calls
 
     @GET(GetWalletBalances)
-    Single<CobinResponse<List<Balance>>> getWalletBalances();
+    Single<Response<List<Balance>>> getWalletBalances();
 
     @GET(GetLedgerEntries)
-    Single<CobinResponse<List<Ledger>>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<Response<List<Ledger>>> getLedgerEntries(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetDepositAddresses)
-    Single<CobinResponse<List<DepositAddress>>> getDepositAddresses(@Query("currency") String currency);
+    Single<Response<List<DepositAddress>>> getDepositAddresses(@Query("currency") String currency);
 
     @GET(GetWithdrawalAddresses)
-    Single<CobinResponse<List<WithdrawalAddress>>> getWithdrawalAddresses(@Query("currency") String currency);
+    Single<Response<List<WithdrawalAddress>>> getWithdrawalAddresses(@Query("currency") String currency);
 
     @GET(GetWithdrawal)
-    Single<CobinResponse<Withdrawal>> getWithdrawal(@Path("withdrawal_id") String withdrawalId);
+    Single<Response<Withdrawal>> getWithdrawal(@Path("withdrawal_id") String withdrawalId);
 
     @GET(GetAllWithdrawals)
-    Single<CobinResponse<List<Withdrawal>>> getWithdrawals(@Query("page") Integer page, @Query("limit") Integer limit);
+    Single<Response<List<Withdrawal>>> getWithdrawals(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @GET(GetDeposit)
-    Single<CobinResponse<Deposit>> getDeposit(@Path("deposit_id") String depositId);
+    Single<Response<Deposit>> getDeposit(@Path("deposit_id") String depositId);
 
     @GET(GetAllDeposits)
-    Single<CobinResponse<List<Deposit>>> getDeposits();
+    Single<Response<List<Deposit>>> getDeposits();
 
 }

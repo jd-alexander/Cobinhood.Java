@@ -21,6 +21,7 @@ public class TradingStatistics {
     private BigDecimal high24hr;
     @SerializedName("low_24hr")
     private BigDecimal low24hr;
+    @SerializedName("percent_changed_24hr")
     private BigDecimal percentChanged24hr;
 
     public String getId() {
