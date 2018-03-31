@@ -101,7 +101,6 @@ public class CobinhoodApi {
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
             builder.registerTypeAdapter(new TypeToken<List<Offer>>(){}.getType(),new OfferDeserializer());
-            builder.registerTypeAdapter(Date.class, new DateDeserializer());
             builder.registerTypeAdapter(Date.class, new DateSerializer());
             builder.registerTypeAdapter(Timeframe.class, new TimeframeDeserializer());
 

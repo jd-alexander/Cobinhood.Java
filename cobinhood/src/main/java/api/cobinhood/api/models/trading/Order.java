@@ -17,7 +17,7 @@ public class Order {
     private BigDecimal size;
     private BigDecimal filled;
     private String state;
-    private Date timestamp;
+    private long timestamp;
     private BigDecimal eqPrice;
     private Date completedAt;
 
@@ -86,11 +86,11 @@ public class Order {
         this.state = state;
     }
 
-    public Date getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
