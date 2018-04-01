@@ -8,7 +8,7 @@
 </p>
 
 ### Java/Android client for Cobinhood Exchange API.
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)]
+![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)
 
 ## Features
 - **Very easy** to understand and get started.
