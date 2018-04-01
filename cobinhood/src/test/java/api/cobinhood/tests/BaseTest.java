@@ -16,7 +16,7 @@ public abstract class BaseTest {
     {
         assertNotNull(result);
 
-        assertTrue(result.size() > 1);
+        assertTrue(result.size() >=  1);
 
         System.out.print(result.get(0).toString());
 

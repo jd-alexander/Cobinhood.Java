@@ -13,7 +13,7 @@ public class Trade {
     private BigDecimal price;
     private BigDecimal size;
     private String makerSide;
-    private Date timestamp;
+    private long timestamp;
 
 
     public String getId() {
@@ -48,11 +48,11 @@ public class Trade {
         this.makerSide = makerSide;
     }
 
-    public Date getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
