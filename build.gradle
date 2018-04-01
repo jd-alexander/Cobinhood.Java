@@ -14,6 +14,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.airbnb.okreplay:gradle-plugin:1.4.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'gradle.plugin.de.fuerstenau:BuildConfigPlugin:1.1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
@@ -26,6 +27,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+
     }
 }
 
