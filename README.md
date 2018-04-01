@@ -63,13 +63,60 @@ cobinhoodService = new CobinhoodApi.Builder()
 ```
 
 
-## Documentation and Examples
-- [System Methods](/Documentation/SystemMethods.md)
-- [Market Methods](/Documentation/MarketMethods.md)
-- [Chart Methods](/Documentation/ChartMethods.md)
-- [Trading Methods](/Documentation/TradingMethods.md)
-- [Wallet Methods](/Documentation/WalletMethods.md)
-- [WebSocket Methods](/Documentation/WebSocketMethods.md)
+## Example
+
+### cobinhoodService.getSystemTime()
+
+Get system time as Unix timestamp.
+
+#### Parameters
+
+| Parameter | Type | Example |
+| --------- | ---- | ------- |
+| none      | -    | -       |
+
+
+#### Return Type
+`Single<Response<Date>>`
+
+#### Example
+```java
+cobinhoodService.getSystemTime().subscribe(dateResponse -> {
+
+});
+
+```
+Shown above is a Consumer that has been converted into a lambda expression.
+
+
+
+### cobinhoodService.getSystemInformation()
+
+Get system info.
+
+#### Parameters
+
+| Parameter | Type | Example |
+| --------- | ---- | ------- |
+| none      | -    | -       |
+
+
+#### Return Type
+`Single<Response<SystemInformation>>`
+
+#### Example
+```java
+cobinhoodService.getSystemInformation().subscribe(new Consumer<Response<SystemInformation>>() {
+@Override
+public void accept(Response<SystemInformation> systemInformationResponse) throws Exception {
+
+}
+});
+```
+
+Above is a Consumer in it's full form.
+
+All of the other methods follow this design where an observable of type Single is returned that you can subscribe to for results. To see a list of a parameters for the different methods simply use the intellisense within Android Studio or IntelliJ and if you have any other concerns about the API you can check the API documentation.
 
 ## License
 Cobinhood.Java is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

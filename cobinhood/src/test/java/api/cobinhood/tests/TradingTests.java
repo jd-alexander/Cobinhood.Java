@@ -3,18 +3,21 @@ package api.cobinhood.tests;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 import api.cobinhood.CobinhoodApi;
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.Response;
 import api.cobinhood.api.models.market.Trade;
+import api.cobinhood.api.models.system.SystemInformation;
 import api.cobinhood.api.models.trading.Order;
 import api.cobinhood.api.models.trading.OrderType;
 import api.cobinhood.api.models.trading.PlaceOrder;
 import api.cobinhood.api.models.trading.Side;
 import api.cobinhood.utils.BuildConfig;
 import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -98,6 +101,7 @@ public class TradingTests extends BaseTest {
 
             }
         });
+
 
     }
 
