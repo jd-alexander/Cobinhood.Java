@@ -1,11 +1,8 @@
 package api.cobinhood.tests;
 
-import com.sun.corba.se.spi.transport.TransportDefault;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import api.cobinhood.CobinhoodApi;
@@ -13,7 +10,11 @@ import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.Response;
 import api.cobinhood.api.models.market.Trade;
 import api.cobinhood.api.models.trading.Order;
+import api.cobinhood.api.models.trading.OrderType;
+import api.cobinhood.api.models.trading.PlaceOrder;
+import api.cobinhood.api.models.trading.Side;
 import api.cobinhood.utils.BuildConfig;
+import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -64,7 +65,6 @@ public class TradingTests extends BaseTest {
 
     }
 
-    @Test
     public void GetOrdersTest()
     {
         TestObserver<Response<List<Order>>> observer = cobinhoodService.getOrders(1,10).test();
@@ -74,8 +74,33 @@ public class TradingTests extends BaseTest {
         List<Order> result = observer.values().get(0).getResult();
 
         AssertList(result);
+    }
+
+    @Test
+    public void PlaceOrderTest()
+    {
+        PlaceOrder order = new PlaceOrder();
+        order.setTradingPairId("ETH-BTC");
+        order.setType(OrderType.Limit);
+        order.setPrice(0.05);
+        order.setSize(0.0982269);
+        order.setSide(Side.Ask);
+
+        Single<Response<Order>> result = cobinhoodService.placeOrder(order);
+
+        result.subscribe(orderResponse -> {
+
+            if(orderResponse.isSuccess())
+            {
+                TestObserver<Response> observer = cobinhoodService.cancelOrder(orderResponse.getResult().getId()).test();
+
+                observer.assertNoErrors();
+
+            }
+        });
 
     }
+
 
 
 

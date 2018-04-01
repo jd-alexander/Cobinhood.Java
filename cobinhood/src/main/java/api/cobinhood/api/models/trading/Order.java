@@ -12,7 +12,7 @@ public class Order {
     private String id;
     private String tradingPairId;
     private String side;
-    private String type;
+    private OrderType type;
     private BigDecimal price;
     private BigDecimal size;
     private BigDecimal filled;
@@ -46,11 +46,11 @@ public class Order {
         this.side = side;
     }
 
-    public String getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(OrderType type) {
         this.type = type;
     }
 

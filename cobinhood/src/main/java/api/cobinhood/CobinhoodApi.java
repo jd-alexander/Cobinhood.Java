@@ -2,6 +2,8 @@ package api.cobinhood;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -11,14 +13,17 @@ import java.util.List;
 
 import api.cobinhood.api.CobinhoodService;
 import api.cobinhood.api.models.chart.Timeframe;
-import api.cobinhood.converters.DateConverter;
-import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
-import api.cobinhood.converters.RetrofitEnumConverter;
-import api.cobinhood.interceptors.AuthenticationInterceptor;
 import api.cobinhood.api.models.market.Offer;
-import api.cobinhood.serializers.DateDeserializer;
+import api.cobinhood.api.models.trading.OrderType;
+import api.cobinhood.api.models.trading.Side;
+import api.cobinhood.converters.DateConverter;
+import api.cobinhood.converters.RetrofitEnumConverter;
+import api.cobinhood.converters.RxErrorHandlingCallAdapterFactory;
+import api.cobinhood.interceptors.AuthenticationInterceptor;
 import api.cobinhood.serializers.DateSerializer;
+import api.cobinhood.serializers.DoubleSerializer;
 import api.cobinhood.serializers.OfferDeserializer;
+import api.cobinhood.serializers.OrderTypeSerializer;
 import api.cobinhood.serializers.TimeframeDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -96,13 +101,16 @@ public class CobinhoodApi {
 
             OkHttpClient okHttpClient = okHttpBuilder.build();
 
-
             final GsonBuilder builder = new GsonBuilder();
             builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
             builder.registerTypeAdapter(new TypeToken<List<Offer>>(){}.getType(),new OfferDeserializer());
             builder.registerTypeAdapter(Date.class, new DateSerializer());
             builder.registerTypeAdapter(Timeframe.class, new TimeframeDeserializer());
+            builder.registerTypeAdapter(OrderType.class, new OrderTypeSerializer());
+            builder.registerTypeAdapter(Double.class, new DoubleSerializer());
+
+            builder.registerTypeAdapter(Side.class, (JsonSerializer<Side>) (src, typeOfSrc, context) -> new JsonPrimitive(src.toString().toLowerCase()));
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)

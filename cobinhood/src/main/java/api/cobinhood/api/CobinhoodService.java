@@ -17,6 +17,7 @@ import api.cobinhood.api.models.market.TradingStatistics;
 import api.cobinhood.api.models.system.SystemInformation;
 import api.cobinhood.api.models.trading.Deposit;
 import api.cobinhood.api.models.trading.Order;
+import api.cobinhood.api.models.trading.PlaceOrder;
 import api.cobinhood.api.models.wallet.Balance;
 import api.cobinhood.api.models.wallet.DepositAddress;
 import api.cobinhood.api.models.wallet.Ledger;
@@ -107,7 +108,7 @@ public interface CobinhoodService {
     Single<Response<List<Order>>> getOrders(@Query("page") Integer page, @Query("limit") Integer limit);
 
     @POST(PlaceOrder)
-    Single<Response<Order>> placeOrder(@Body Order order);
+    Single<Response<Order>> placeOrder(@Body PlaceOrder order);
 
     @DELETE(CancelOrder)
     Single<Response> cancelOrder(@Path("order_id") String orderId);
